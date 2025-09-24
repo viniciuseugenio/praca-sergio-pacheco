@@ -3,4 +3,6 @@
 @theme {
   --font-sans: "Inter";
   --font-serif: "Instrument Serif";
+  --color-primary: #27340c;
+  --color-primary-hover: #232f0b;
 }
