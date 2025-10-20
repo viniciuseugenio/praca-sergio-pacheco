@@ -5,4 +5,26 @@
   --font-serif: "Instrument Serif";
   --color-primary: #27340c;
   --color-primary-hover: #232f0b;
+  --color-offwhite: #f2f0ef;
+}
+
+body {
+  color: #222;
+}
+
+.swiper {
+  padding: 60px 50px !important;
+}
+
+.swiper-navigation-icon {
+  width: 14px !important;
+  color: #757d64;
+}
+
+@media (min-width: 768px) {
+}
+
+.swiper-pagination-bullet-active {
+  background: #27340c !important;
+  transform: scale(1.15);
 }

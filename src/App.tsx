@@ -1,5 +1,5 @@
+import Gallery from "./components/Gallery";
 import HeroSection from "./components/HeroSection";
-import History from "./components/History";
 import HowToUse from "./components/HowToUse";
 
 function App() {
@@ -7,7 +7,7 @@ function App() {
     <>
       <HeroSection />
       <HowToUse />
-      <History />
+      <Gallery />
     </>
   );
 }
