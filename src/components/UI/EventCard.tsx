@@ -1,4 +1,4 @@
-import { Calendar, Clock } from "lucide-react";
+import { Calendar, Clock, type LucideProps } from "lucide-react";
 
 type EventCardProps = {
   img: string;
@@ -6,6 +6,20 @@ type EventCardProps = {
   children: string;
   time: string;
   date: string; // Temporary, change it later
+};
+
+type EventCardInfoProps = {
+  Icon: React.ForwardRefExoticComponent<Omit<LucideProps, "ref">>;
+  text: string;
+};
+
+const EventCardInfo: React.FC<EventCardInfoProps> = ({ Icon, text }) => {
+  return (
+    <div className="mt-2 flex items-center gap-1">
+      <Icon className="h-3 w-3 sm:h-4 sm:w-4" />
+      <span className="text-xs sm:text-sm">{text}</span>
+    </div>
+  );
 };
 
 const EventCard: React.FC<EventCardProps> = ({
@@ -23,15 +37,8 @@ const EventCard: React.FC<EventCardProps> = ({
       <div className="mt-4 px-4 pb-4">
         <h3 className="font-serif text-xl">{title}</h3>
         <div className="flex gap-6">
-          <div className="mt-2 flex items-center gap-1">
-            <Clock className="h-4 w-4" />
-            <span className="text-sm">{time}</span>
-          </div>
-
-          <div className="mt-2 flex items-center gap-1">
-            <Calendar className="h-4 w-4" />
-            <span className="text-sm">{date}</span>
-          </div>
+          <EventCardInfo Icon={Clock} text={time} />
+          <EventCardInfo Icon={Calendar} text={date} />
         </div>
         <p className="text-sm mt-2">{children}</p>
       </div>
