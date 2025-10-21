@@ -18,12 +18,12 @@ type SiteInfoCard = {
 
 const InfoCard: React.FC<SiteInfoCard> = ({ Icon, title, description }) => {
   return (
-    <div className="hover:scale-105 group duration-300 border border-primary/20 hover:shadow-lg shadow-md rounded-md gap-3 p-8 shadow-[#a9ae9e] flex flex-col">
+    <div className="hover:scale-105 group duration-300 hover:ring-1 ring-primary/20 hover:shadow-md shadow-sm rounded-md gap-3 p-8 shadow-[#a9ae9e] flex flex-col">
       <div className="bg-primary/15 group-hover:bg-primary/25 duration-300 inline-block p-2 rounded-md w-fit">
         <Icon className="text-primary" />
       </div>
 
-      <p className="font-serif text-xl">{title}</p>
+      <p className="font-serif font-semibold text-xl">{title}</p>
       <p>{description}</p>
     </div>
   );
