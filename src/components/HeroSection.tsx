@@ -8,7 +8,7 @@ const HeroSection: React.FC = () => {
   };
 
   return (
-    <section className="min-h-screen relative flex items-center">
+    <section className="min-h-[100svh] relative flex items-center">
       <div className="h-full w-full overflow-hidden absolute inset-0">
         <img
           src={HeroImage}
