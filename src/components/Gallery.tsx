@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
+import { Navigation, Pagination } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 import SectionContainer from "./UI/SectionContainer";
 import SectionTitle from "./UI/SectionTitle";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper/modules";
 
 const Gallery: React.FC = () => {
   const slides = [

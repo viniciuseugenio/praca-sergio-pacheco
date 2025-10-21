@@ -1,8 +1,6 @@
-import { Calendar, Clock } from "lucide-react";
+import EventCard from "./UI/EventCard";
 import SectionContainer from "./UI/SectionContainer";
 import SectionTitle from "./UI/SectionTitle";
-import EventCard from "./UI/EventCard";
-import { useEffect, useState } from "react";
 
 const IncomingEvents: React.FC = () => {
   return (
