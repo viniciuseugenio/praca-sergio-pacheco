@@ -1,11 +1,12 @@
-import { Calendar, Clock, type LucideProps } from "lucide-react";
+import { Calendar, Clock, MapPin, Users, type LucideProps } from "lucide-react";
 
 type EventCardProps = {
-  img: string;
   title: string;
   children: string;
   time: string;
   date: string; // Temporary, change it later
+  local: string;
+  qtyPeople: string;
 };
 
 type EventCardInfoProps = {
@@ -15,33 +16,31 @@ type EventCardInfoProps = {
 
 const EventCardInfo: React.FC<EventCardInfoProps> = ({ Icon, text }) => {
   return (
-    <div className="mt-2 flex items-center gap-1">
+    <ul className="mt-2 flex items-center gap-2">
       <Icon className="h-3 w-3 sm:h-4 sm:w-4" />
       <span className="text-xs sm:text-sm">{text}</span>
-    </div>
+    </ul>
   );
 };
 
 const EventCard: React.FC<EventCardProps> = ({
-  img,
   title,
   children,
   time,
   date,
+  local,
+  qtyPeople,
 }) => {
   return (
-    <div className="rounded-md min-h-96 shadow-sm hover:scale-105 duration-300 border-primary/20 border max-w-96">
-      <div className="max-h-52 max-w-96 rounded-t-md overflow-hidden items-center justify-center flex">
-        <img className="h-full w-full object-cover" src={img} />
-      </div>
-      <div className="mt-4 px-4 pb-4">
-        <h3 className="font-serif text-xl">{title}</h3>
-        <div className="flex gap-6">
-          <EventCardInfo Icon={Clock} text={time} />
-          <EventCardInfo Icon={Calendar} text={date} />
-        </div>
-        <p className="text-sm mt-2">{children}</p>
-      </div>
+    <div className="bg-primary/5 rounded-md shadow-sm p-6 w-full hover:scale-105 duration-300 border-primary/20 border">
+      <h3 className="font-serif mb-3 font-medium text-xl">{title}</h3>
+      <p className="text-sm mb-3 opacity-80">{children}</p>
+      <ul className="flex flex-col gap-1">
+        <EventCardInfo Icon={Calendar} text={date} />
+        <EventCardInfo Icon={Clock} text={time} />
+        <EventCardInfo Icon={MapPin} text={local} />
+        <EventCardInfo Icon={Users} text={qtyPeople} />
+      </ul>
     </div>
   );
 };
