@@ -6,8 +6,8 @@ type SectionTitleProps = {
 const SectionTitle: React.FC<SectionTitleProps> = ({ title, description }) => {
   return (
     <>
-      <h2 className="font-serif text-4xl">{title}</h2>
-      <p className="max-w-3xl text-lg mt-1">{description}</p>
+      <h2 className="font-serif text-3xl lg:text-4xl">{title}</h2>
+      <p className="max-w-3xl text-base lg:text-lg mt-1">{description}</p>
     </>
   );
 };

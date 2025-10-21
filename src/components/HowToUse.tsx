@@ -23,7 +23,7 @@ const InfoCard: React.FC<SiteInfoCard> = ({ Icon, title, description }) => {
         <Icon className="text-primary" />
       </div>
 
-      <p className="font-serif font-semibold text-xl">{title}</p>
+      <p className="font-serif text-xl">{title}</p>
       <p>{description}</p>
     </div>
   );

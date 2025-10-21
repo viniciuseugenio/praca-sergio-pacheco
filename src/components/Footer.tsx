@@ -8,7 +8,7 @@ const FooterTitle: React.FC<{ children: string }> = ({ children }) => {
 const Footer: React.FC = () => {
   return (
     <footer className="bg-primary text-offwhite">
-      <div className="p-12 grid grid-cols-[auto_auto_auto] gap-12">
+      <div className="p-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
         <div className="w-fit">
           <h3 className="text-xl font-serif mb-3 font-semibold">
             Praça Sérgio Pacheco

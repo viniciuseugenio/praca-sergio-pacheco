@@ -21,7 +21,7 @@ const EventCard: React.FC<EventCardProps> = ({
         <img className="h-full w-full object-cover" src={img} />
       </div>
       <div className="mt-4 px-4 pb-4">
-        <h3 className="font-serif font-bold text-xl">{title}</h3>
+        <h3 className="font-serif text-xl">{title}</h3>
         <div className="flex gap-6">
           <div className="mt-2 flex items-center gap-1">
             <Clock className="h-4 w-4" />

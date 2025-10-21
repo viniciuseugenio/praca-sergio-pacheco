@@ -48,7 +48,7 @@ const Gallery: React.FC = () => {
                   <h3 className="text-xl font-semibold md:text-3xl font-serif">
                     Nostrum nesciunt, repellat accusantium
                   </h3>
-                  <p className="mt-2 opacity-90">
+                  <p className="mt-2 text-sm md:text-base opacity-90">
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                     Distinctio cumque accusantium voluptatem dicta ducimus
                     quasi, ab harum? Sed animi ipsa! Mollitia ex iure velit esse
