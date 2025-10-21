@@ -24,7 +24,7 @@ const InfoCard: React.FC<SiteInfoCard> = ({ Icon, title, description }) => {
       </div>
 
       <p className="font-serif text-xl">{title}</p>
-      <p>{description}</p>
+      <p className="text-sm sm:text-base">{description}</p>
     </div>
   );
 };

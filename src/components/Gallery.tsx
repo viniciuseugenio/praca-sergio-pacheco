@@ -45,7 +45,7 @@ const Gallery: React.FC = () => {
                   />
                 </div>
                 <div className="mt-4">
-                  <h3 className="text-xl font-semibold md:text-3xl font-serif">
+                  <h3 className="text-xl font-medium md:text-3xl font-serif">
                     Nostrum nesciunt, repellat accusantium
                   </h3>
                   <p className="mt-2 text-sm md:text-base opacity-90">
