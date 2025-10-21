@@ -11,7 +11,7 @@ import SectionTitle from "./UI/SectionTitle";
 import SectionContainer from "./UI/SectionContainer";
 
 type SiteInfoCard = {
-  Icon: LucideProps;
+  Icon: React.ForwardRefExoticComponent<Omit<LucideProps, "ref">>;
   title: string;
   description: string;
 };
