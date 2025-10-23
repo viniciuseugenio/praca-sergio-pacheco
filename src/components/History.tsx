@@ -30,7 +30,7 @@ const HistoryCard: React.FC<HistoryCardProps> = ({
     <motion.section
       initial={{ opacity: 0, x: idx % 2 === 0 ? -40 : 40 }}
       whileInView={{ opacity: 1, x: 0 }}
-      transition={{ type: "spring", bounce: 0, delay: 0.3 + idx * 0.06 }}
+      transition={{ type: "spring", bounce: 0, delay: 0.1 + idx * 0.06 }}
       viewport={{ once: true }}
       className={twMerge(
         "border-primary/20 lg:max-w-md xl:max-w-xl 2xl:max-w-2xl bg-primary/5 shadow-md self-center h-fit border-1 rounded-md p-6",
