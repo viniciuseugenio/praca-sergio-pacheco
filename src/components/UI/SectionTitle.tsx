@@ -11,7 +11,7 @@ const SectionTitle: React.FC<SectionTitleProps> = ({ title, description }) => {
         initial={{ opacity: 0, x: -30 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
-        transition={{ bounce: 0 }}
+        transition={{ bounce: 0, type: "spring", duration: 0.6, delay: 0.1 }}
         className="font-serif text-3xl lg:text-4xl"
       >
         {title}
@@ -20,7 +20,7 @@ const SectionTitle: React.FC<SectionTitleProps> = ({ title, description }) => {
         initial={{ opacity: 0, x: -30 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
-        transition={{ bounce: 0, type: "spring", delay: 0.3, duration: 1 }}
+        transition={{ bounce: 0, type: "spring", delay: 0.2, duration: 0.6 }}
         className="max-w-3xl text-base lg:text-lg mt-1"
       >
         {description}
