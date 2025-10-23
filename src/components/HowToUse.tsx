@@ -29,7 +29,7 @@ const InfoCard: React.FC<SiteInfoCard> = ({
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ delay: 0.1 + idx * 0.1, duration: 0.6 }}
+      transition={{ delay: 0.1 + idx * 0.06, duration: 0.6 }}
       className="group  hover:ring-1 transition-colors ring-primary/20 hover:shadow-md shadow-sm rounded-md gap-3 p-5 sm:p-8 shadow-[#a9ae9e] flex flex-col"
     >
       <div className="bg-primary/15 group-hover:bg-primary/25 duration-300 inline-block p-2 rounded-md w-fit">
