@@ -9,23 +9,36 @@ import {
 } from "lucide-react";
 import SectionTitle from "./UI/SectionTitle";
 import SectionContainer from "./UI/SectionContainer";
+import { motion } from "motion/react";
 
 type SiteInfoCard = {
   Icon: React.ForwardRefExoticComponent<Omit<LucideProps, "ref">>;
   title: string;
   description: string;
+  idx: number;
 };
 
-const InfoCard: React.FC<SiteInfoCard> = ({ Icon, title, description }) => {
+const InfoCard: React.FC<SiteInfoCard> = ({
+  Icon,
+  title,
+  description,
+  idx,
+}) => {
   return (
-    <div className="hover:scale-105 group duration-300 hover:ring-1 ring-primary/20 hover:shadow-md shadow-sm rounded-md gap-3 p-5 sm:p-8 shadow-[#a9ae9e] flex flex-col">
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: 0.3 + idx * 0.08, duration: 0.6 }}
+      className="group  hover:ring-1 transition-colors ring-primary/20 hover:shadow-md shadow-sm rounded-md gap-3 p-5 sm:p-8 shadow-[#a9ae9e] flex flex-col"
+    >
       <div className="bg-primary/15 group-hover:bg-primary/25 duration-300 inline-block p-2 rounded-md w-fit">
         <Icon className="text-primary" />
       </div>
 
       <p className="font-serif text-xl">{title}</p>
       <p className="text-sm sm:text-base">{description}</p>
-    </div>
+    </motion.div>
   );
 };
 
@@ -76,8 +89,9 @@ const HowToUse: React.FC = () => {
         description="Nosso website tem o propósito de simplicidade e acessibilidade para todas as idades. Aqui está o que você pode descobrir e como navegar por essa experiência digital."
       />
       <div className="grid mb-12 gap-6 mt-12 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 grid-rows-2">
-        {cards.map((card) => (
+        {cards.map((card, idx) => (
           <InfoCard
+            idx={idx}
             key={card.title}
             Icon={card.Icon}
             title={card.title}

@@ -1,11 +1,13 @@
 import { twMerge } from "tailwind-merge";
 import SectionContainer from "./UI/SectionContainer";
 import SectionTitle from "./UI/SectionTitle";
+import { motion } from "motion/react";
 
 type HistoryCardProps = React.PropsWithChildren<{
   date: string;
   title: string;
   className?: string;
+  idx: number;
 }>;
 
 const LineDot: React.FC = () => {
@@ -22,9 +24,14 @@ const HistoryCard: React.FC<HistoryCardProps> = ({
   title,
   children,
   className,
+  idx,
 }) => {
   return (
-    <section
+    <motion.section
+      initial={{ opacity: 0, x: idx % 2 === 0 ? -40 : 40 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      transition={{ type: "spring", bounce: 0, delay: 0.3 + idx * 0.06 }}
+      viewport={{ once: true }}
       className={twMerge(
         "border-primary/20 lg:max-w-md xl:max-w-xl 2xl:max-w-2xl bg-primary/5 shadow-md self-center h-fit border-1 rounded-md p-6",
         className,
@@ -39,7 +46,7 @@ const HistoryCard: React.FC<HistoryCardProps> = ({
       <div className="flex flex-col gap-5 mt-4 text-sm sm:text-base leading-relaxed">
         {children}
       </div>
-    </section>
+    </motion.section>
   );
 };
 
@@ -91,6 +98,7 @@ const History: React.FC = () => {
             className={twMerge("relative flex", idx === 1 ? "justify-end" : "")}
           >
             <HistoryCard
+              idx={idx}
               date={item.date}
               title={item.title}
               className={item.cardClass}
