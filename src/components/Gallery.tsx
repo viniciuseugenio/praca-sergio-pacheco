@@ -2,6 +2,7 @@ import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SectionContainer from "./UI/SectionContainer";
 import SectionTitle from "./UI/SectionTitle";
+import { motion } from "motion/react";
 
 const Gallery: React.FC = () => {
   const slides = [
@@ -22,7 +23,13 @@ const Gallery: React.FC = () => {
           description="Explore a beleza natural e as diversas atrações da Praça Sérgio Pacheco"
         />
       </SectionContainer>
-      <div className="w-full h-full">
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ type: "spring", duration: 0.6, delay: 0.3 }}
+        className="w-full h-full"
+      >
         <div className="flex">
           <Swiper
             spaceBetween={50}
@@ -59,7 +66,7 @@ const Gallery: React.FC = () => {
             ))}
           </Swiper>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };
