@@ -4,6 +4,7 @@ import HeroSection from "./components/HeroSection";
 import History from "./components/History";
 import HowToUse from "./components/HowToUse";
 import IncomingEvents from "./components/IncomingEvents";
+import PlanVisit from "./components/PlanVisit";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Gallery />
       <IncomingEvents />
       <History />
+      <PlanVisit />
       <Footer />
     </>
   );
