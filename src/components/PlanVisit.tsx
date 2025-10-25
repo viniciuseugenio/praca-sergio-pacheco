@@ -1,8 +1,8 @@
-import { Accessibility, Bus, Car, Phone, type LucideProps } from "lucide-react";
+import { Accessibility, Bus, Car, Phone } from "lucide-react";
+import { motion } from "motion/react";
+import type { LucideIcon } from "../types/global";
 import SectionContainer from "./UI/SectionContainer";
 import SectionTitle from "./UI/SectionTitle";
-import type { LucideIcon } from "../types/global";
-import { motion } from "motion/react";
 
 type TrajectBoxProps = React.PropsWithChildren<{
   Icon: LucideIcon;
