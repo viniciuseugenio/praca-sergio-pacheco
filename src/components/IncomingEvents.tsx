@@ -42,7 +42,7 @@ const IncomingEvents: React.FC = () => {
   ];
 
   return (
-    <SectionContainer className="mt-32 mb-32">
+    <SectionContainer className="mt-16">
       <SectionTitle
         title="Próximos eventos"
         description="Descubra as atividades e eventos especiais que acontecem na praça."
