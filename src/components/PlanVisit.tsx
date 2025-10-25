@@ -21,6 +21,7 @@ const TrajectBox: React.FC<TrajectBoxProps> = ({
       initial={{ opacity: 0, y: -20 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ delay }}
+      viewport={{ once: true }}
       className="grid grid-cols-[auto_1fr] mt-5 gap-4 border p-6 border-primary/10 shadow-sm rounded-md bg-white"
     >
       <div className="p-3 bg-primary/20 w-fit h-fit rounded-md text-primary">
@@ -52,6 +53,7 @@ const VisitorInfo: React.FC<VisitorInfoProps> = ({
     <motion.div
       initial={{ opacity: 0, y: -20 }}
       whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
       transition={{ delay }}
       className="mt-5 bg-white p-6 border-primary/10 shadow-sm w-full rounded-md border"
     >
