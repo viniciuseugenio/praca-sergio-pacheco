@@ -1,3 +1,4 @@
+import Feedback from "./components/Feedback";
 import Footer from "./components/Footer";
 import Gallery from "./components/Gallery";
 import HeroSection from "./components/HeroSection";
@@ -15,6 +16,7 @@ function App() {
       <IncomingEvents />
       <History />
       <PlanVisit />
+      <Feedback />
       <Footer />
     </>
   );
