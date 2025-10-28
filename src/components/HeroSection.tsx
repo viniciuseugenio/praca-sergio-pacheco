@@ -1,4 +1,4 @@
-import HeroImage from "../assets/pexels-myersmc16-919335.jpg";
+import heroImage from "../assets/pexels-myersmc16-919335.jpg";
 import { ArrowDown } from "lucide-react";
 import { motion } from "motion/react";
 
@@ -9,13 +9,12 @@ const HeroSection: React.FC = () => {
   };
 
   return (
-    <section className="min-h-[100svh] relative flex items-center">
-      <div className="h-full w-full overflow-hidden absolute inset-0">
-        <img
-          src={HeroImage}
-          alt="Uma imagem da Praça Sérgio Pacheco"
-          className="h-full w-full object-cover brightness-50"
-        />
+    <section className="min-h-screen relative flex items-center">
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${heroImage})` }}
+      >
+        <div className="absolute inset-0 opacity-70 bg-black" />
       </div>
 
       <div className="container mx-auto absolute flex flex-col z-10 min-h-screen px-4 sm:px-6 lg:px-8 items-start justify-between inset-0 pt-16 sm:pt-20 lg:pt-24">
