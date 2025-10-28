@@ -11,6 +11,12 @@
   --color-offwhite: #f2f0ef;
 }
 
+@layer components {
+  .title {
+    @apply text-primary font-serif font-semibold;
+  }
+}
+
 body {
   color: #222;
 }
