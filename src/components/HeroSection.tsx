@@ -1,6 +1,7 @@
 import heroImage from "../assets/pexels-myersmc16-919335.jpg";
 import { ArrowDown } from "lucide-react";
 import { motion } from "motion/react";
+import { useEffect } from "react";
 
 const HeroSection: React.FC = () => {
   const onClick = () => {
@@ -8,8 +9,27 @@ const HeroSection: React.FC = () => {
     howToUse?.scrollIntoView({ behavior: "smooth" });
   };
 
+  useEffect(() => {
+    const setVh = () => {
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty("--vh", `${vh}px`);
+    };
+
+    setVh();
+
+    const onOrientationChange = () => setVh();
+    window.addEventListener("orientationchange", onOrientationChange);
+
+    return () => {
+      window.removeEventListener("orientationchange", onOrientationChange);
+    };
+  }, []);
+
   return (
-    <section className="min-h-screen relative flex items-center">
+    <section
+      className="w-full relative flex items-center"
+      style={{ height: "calc(var(--vh, 1vh) * 100)" }}
+    >
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${heroImage})` }}
