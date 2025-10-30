@@ -9,7 +9,7 @@ const HeroSection: React.FC = () => {
   };
 
   return (
-    <section className="h-screen relative flex items-center">
+    <section className="h-svh relative flex items-center">
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${heroImage})` }}
