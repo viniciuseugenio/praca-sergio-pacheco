@@ -1,15 +1,25 @@
 import heroImage from "../assets/pexels-myersmc16-919335.jpg";
 import { ArrowDown } from "lucide-react";
 import { motion } from "motion/react";
+import { useState, useEffect } from "react";
 
 const HeroSection: React.FC = () => {
+  const [viewportHeight, setViewportHeight] = useState(0);
+
+  useEffect(() => {
+    setViewportHeight(window.innerHeight);
+  }, []);
+
   const onClick = () => {
     const howToUse = document.getElementById("how-to-use");
     howToUse?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <section className="h-svh relative flex items-center">
+    <section
+      className="relative flex items-center"
+      style={{ height: viewportHeight || "100vh" }}
+    >
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${heroImage})` }}
@@ -17,7 +27,7 @@ const HeroSection: React.FC = () => {
         <div className="absolute inset-0 opacity-70 bg-black" />
       </div>
 
-      <div className="container mx-auto absolute flex flex-col z-10 min-h-screen px-4 sm:px-6 lg:px-8 items-start justify-between inset-0 pt-16 sm:pt-20 lg:pt-24">
+      <div className="container mx-auto absolute flex flex-col z-10 h-full px-4 sm:px-6 lg:px-8 items-start justify-between inset-0 pt-16 sm:pt-20 lg:pt-24">
         <div>
           <motion.h1
             initial={{ opacity: 0, x: -20 }}
