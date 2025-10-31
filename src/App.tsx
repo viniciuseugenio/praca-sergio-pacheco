@@ -1,24 +1,16 @@
-import Feedback from "./components/Feedback";
-import Footer from "./components/Footer";
-import Gallery from "./components/Gallery";
-import HeroSection from "./components/HeroSection";
-import History from "./components/History";
-import HowToUse from "./components/HowToUse";
-import IncomingEvents from "./components/IncomingEvents";
-import PlanVisit from "./components/PlanVisit";
+import { BrowserRouter, Route, Routes } from "react-router";
+import Layout from "./components/Layout";
+import Index from "./pages/Index";
 
 function App() {
   return (
-    <>
-      <HeroSection />
-      <HowToUse />
-      <Gallery />
-      <IncomingEvents />
-      <History />
-      <PlanVisit />
-      <Feedback />
-      <Footer />
-    </>
+      <BrowserRouter>
+        <Routes>
+          <Route element={<Layout />}>
+            <Route path="/" element={<Index />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
   );
 }
 
