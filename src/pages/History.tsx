@@ -3,6 +3,7 @@ import { motion } from "motion/react";
 import { Link } from "react-router";
 import inaguracaoPraca from "../assets/inauguracao.jpg";
 import maquete from "../assets/maquete.png";
+import Timeline from "../components/Timeline";
 import SectionContainer from "../components/UI/SectionContainer";
 
 const History: React.FC = () => {
@@ -153,6 +154,7 @@ const History: React.FC = () => {
           </p>
         </div>
       </SectionContainer>
+      <Timeline />
     </>
   );
 };
