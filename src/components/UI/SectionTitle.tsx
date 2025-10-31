@@ -4,7 +4,7 @@ import { Link } from "react-router";
 
 type SectionTitleProps = {
   title: string;
-  description: string;
+  description?: string;
   button?: boolean;
   buttonLabel?: string;
   href?: string;
