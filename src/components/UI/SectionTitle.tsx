@@ -15,7 +15,7 @@ const SectionTitle: React.FC<SectionTitleProps> = ({
   description,
   button,
   buttonLabel,
-  href,
+  href = "/",
 }) => {
   return (
     <div className="flex flex-col md:flex-row md:items-center md:justify-between">
