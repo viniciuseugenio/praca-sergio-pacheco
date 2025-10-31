@@ -1,6 +1,8 @@
 import { Outlet, useLocation } from "react-router";
 import Footer from "./Footer";
+import Navbar from "./Navbar";
 import { useEffect } from "react";
+
 const Layout: React.FC = () => {
   const { pathname } = useLocation();
 
@@ -10,6 +12,7 @@ const Layout: React.FC = () => {
 
   return (
     <>
+      <Navbar />
       <Outlet />
       <Footer />
     </>
