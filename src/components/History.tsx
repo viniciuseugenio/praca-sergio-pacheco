@@ -84,6 +84,9 @@ const History: React.FC = () => {
       <SectionTitle
         title="Nossa História"
         description="Conheça brevemente a história e o legado cultural da Praça Sérgio Pacheco"
+        button
+        buttonLabel="Descubra mais sobre a história"
+        href="/history"
       />
 
       <div className="relative mt-10 justify-items-center lg:justify-items-normal lg:gap-y-4 gap-y-10 flex flex-col">
