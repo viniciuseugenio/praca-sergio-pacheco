@@ -22,13 +22,13 @@ const TrajectBox: React.FC<TrajectBoxProps> = ({
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ delay }}
       viewport={{ once: true }}
-      className="grid grid-cols-[auto_1fr] mt-5 gap-4 border p-6 border-primary/10 shadow-sm rounded-md bg-white"
+      className="border-primary/10 mt-5 grid grid-cols-[auto_1fr] gap-4 rounded-md border bg-white p-6 shadow-sm"
     >
-      <div className="p-3 bg-primary/20 w-fit h-fit rounded-md text-primary">
+      <div className="bg-primary/20 text-primary h-fit w-fit rounded-md p-3">
         <Icon />
       </div>
       <div className="flex flex-col gap-2">
-        <h3 className="font-serif text-primary text-xl font-semibold">
+        <h3 className="text-primary font-serif text-xl font-semibold">
           {title}
         </h3>
         {children}
@@ -55,15 +55,15 @@ const VisitorInfo: React.FC<VisitorInfoProps> = ({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay }}
-      className="mt-5 bg-white p-6 border-primary/10 shadow-sm w-full rounded-md border"
+      className="border-primary/10 mt-5 w-full rounded-md border bg-white p-6 shadow-sm"
     >
-      <div className="flex gap-3 items-center">
+      <div className="flex items-center gap-3">
         <Icon className="h-5 w-5" />
-        <h3 className="font-serif text-primary font-semibold text-xl">
+        <h3 className="text-primary font-serif text-xl font-semibold">
           {title}
         </h3>
       </div>
-      <ul className="mt-3 flex flex-col gap-2 text-primary opacity-90 text-sm sm:text-base">
+      <ul className="text-primary mt-3 flex flex-col gap-2 text-sm opacity-90 sm:text-base">
         {children}
       </ul>
     </motion.div>
@@ -72,19 +72,19 @@ const VisitorInfo: React.FC<VisitorInfoProps> = ({
 
 const PlanVisit: React.FC = () => {
   return (
-    <div className="bg-primary/5 py-16 mt-32">
-      <SectionContainer>
+    <div className="bg-primary/5 mt-32 py-16">
+      <SectionContainer id="direcoes" className="pt-24">
         <SectionTitle
           title="Planeje sua visita"
           description="Obtenha direções, informações sobre o clima e acessibilidade"
         />
-        <div className="gap-12 grid grid-cols-1 md:grid-cols-2 mt-12">
+        <div className="mt-12 grid grid-cols-1 gap-12 md:grid-cols-2">
           <div>
-            <h2 className="font-serif text-2xl text-primary font-semibold">
+            <h2 className="text-primary font-serif text-2xl font-semibold">
               Como chegar aqui
             </h2>
             <TrajectBox delay={0.3} Icon={Car} title="De carro">
-              <div className="text-sm sm:text-base mt-2 flex flex-col gap-2">
+              <div className="mt-2 flex flex-col gap-2 text-sm sm:text-base">
                 <p className="opacity-90">
                   <span className="text-primary font-semibold">Endereço: </span>{" "}
                   Próximo à avenida João Pessoa, avenida Brasil e avenida
@@ -95,7 +95,7 @@ const PlanVisit: React.FC = () => {
                 </p>
                 <a
                   href="https://maps.app.goo.gl/XbfRvZFugMRaqiYr7"
-                  className="text-sm underline cursor-pointer text-primary"
+                  className="text-primary cursor-pointer text-sm underline"
                   target="_blank"
                 >
                   Veja no Google Maps
@@ -103,7 +103,7 @@ const PlanVisit: React.FC = () => {
               </div>
             </TrajectBox>
             <TrajectBox delay={0.6} Icon={Bus} title="De ônibus">
-              <div className="text-sm sm:text-base flex flex-col gap-2 mt-2">
+              <div className="mt-2 flex flex-col gap-2 text-sm sm:text-base">
                 <p className="opacity-90">
                   <span className="text-primary font-semibold">Trajeto:</span>{" "}
                   Qualquer ônibus que vá em direção ao Terminal Central
@@ -116,7 +116,7 @@ const PlanVisit: React.FC = () => {
             </TrajectBox>
           </div>
           <div>
-            <h2 className="font-serif text-primary text-2xl font-semibold">
+            <h2 className="text-primary font-serif text-2xl font-semibold">
               Informações para visitantes
             </h2>
             <div>

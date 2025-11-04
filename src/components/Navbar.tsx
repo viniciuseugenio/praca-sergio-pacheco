@@ -113,6 +113,11 @@ const Navbar: React.FC = () => {
               isPastHero={isPastHero}
             />
             <DesktopLink
+              label="Direções"
+              to="/#direcoes"
+              isPastHero={isPastHero}
+            />
+            <DesktopLink
               label="História"
               to="/history"
               isPastHero={isPastHero}
@@ -171,10 +176,16 @@ const Navbar: React.FC = () => {
                   label="Galeria"
                 />
                 <MobileLink
-                  to="#gallery"
+                  to="/#eventos"
                   closeMobileMenu={closeMobileMenu}
                   isPastHero={isPastHero}
-                  label="Galeria"
+                  label="Eventos"
+                />
+                <MobileLink
+                  to="/#direcoes"
+                  closeMobileMenu={closeMobileMenu}
+                  isPastHero={isPastHero}
+                  label="Direções"
                 />
                 <MobileLink
                   to="/history"
