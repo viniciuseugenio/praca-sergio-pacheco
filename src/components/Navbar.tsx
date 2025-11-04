@@ -112,6 +112,11 @@ const Navbar: React.FC = () => {
               to="/#gallery"
               isPastHero={isPastHero}
             />
+            <DesktopLink
+              label="Eventos"
+              to="/#eventos"
+              isPastHero={isPastHero}
+            />
           </div>
 
           {/* Mobile Menu Button */}
@@ -170,6 +175,12 @@ const Navbar: React.FC = () => {
                   closeMobileMenu={closeMobileMenu}
                   isPastHero={isPastHero}
                   label="Galeria"
+                />
+                <MobileLink
+                  to="/#eventos"
+                  closeMobileMenu={closeMobileMenu}
+                  isPastHero={isPastHero}
+                  label="Eventos"
                 />
               </div>
             </motion.div>

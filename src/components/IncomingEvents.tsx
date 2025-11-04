@@ -42,13 +42,13 @@ const IncomingEvents: React.FC = () => {
   ];
 
   return (
-    <SectionContainer className="mt-16">
+    <SectionContainer className="pt-24" id="eventos">
       <SectionTitle
         title="Próximos eventos"
         description="Descubra as atividades e eventos especiais que acontecem na praça."
       />
 
-      <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-6">
+      <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2">
         {events.map((event, idx) => (
           <EventCard key={idx} idx={idx} {...event}>
             {event.description}
