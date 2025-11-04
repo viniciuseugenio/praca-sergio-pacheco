@@ -77,7 +77,7 @@ const GalleryPage: React.FC = () => {
   ];
 
   return (
-    <div className="to-primary/5 min-h-screen bg-gradient-to-b from-white py-16 pt-24">
+    <div className="to-primary/5 min-h-screen bg-gradient-to-b from-white py-12 pt-20 sm:py-16 sm:pt-24">
       <SectionContainer>
         <SectionTitle
           title="Galeria de Fotos"
@@ -89,7 +89,7 @@ const GalleryPage: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="mt-12 columns-1 gap-4 space-y-4 sm:columns-2 lg:columns-3 xl:columns-4"
+          className="mt-8 columns-2 gap-3 space-y-3 sm:mt-12 sm:gap-4 sm:space-y-4 md:columns-3 lg:columns-3 xl:columns-4"
         >
           {images.map((image, index) => (
             <motion.div
@@ -97,7 +97,7 @@ const GalleryPage: React.FC = () => {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.4, delay: index * 0.05 }}
-              className="group relative cursor-pointer break-inside-avoid overflow-hidden rounded-lg shadow-md transition-all duration-300 hover:shadow-xl"
+              className="group relative cursor-pointer break-inside-avoid overflow-hidden rounded-lg shadow-md transition-all duration-300 hover:shadow-xl active:scale-95"
               onClick={() => setSelectedImage(image)}
             >
               <img
@@ -106,8 +106,8 @@ const GalleryPage: React.FC = () => {
                 className="h-auto w-full object-cover transition-transform duration-500 group-hover:scale-105"
                 loading="lazy"
               />
-              <div className="absolute inset-0 flex items-center justify-center bg-black/0 transition-colors duration-300 group-hover:bg-black/40">
-                <ZoomIn className="h-10 w-10 text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              <div className="absolute inset-0 flex items-center justify-center bg-black/0 transition-colors duration-300 group-hover:bg-black/40 group-active:bg-black/50">
+                <ZoomIn className="h-8 w-8 text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100 sm:h-10 sm:w-10" />
               </div>
             </motion.div>
           ))}
