@@ -1,10 +1,39 @@
 import { Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useState } from "react";
-import { Link, useMatch } from "react-router";
+import { Link, useMatch, type LinkProps } from "react-router";
+
+type MobileLinkProps = LinkProps & {
+  closeMobileMenu: () => void;
+  isPastHero: boolean;
+  label: string;
+};
+
+const MobileLink: React.FC<MobileLinkProps> = ({
+  to,
+  closeMobileMenu,
+  isPastHero,
+  label,
+  ...props
+}) => {
+  return (
+    <Link
+      to={to}
+      onClick={closeMobileMenu}
+      className={`block touch-manipulation py-2 transition-colors ${
+        isPastHero
+          ? "hover:text-primary text-gray-700"
+          : "text-white hover:text-white/70"
+      }`}
+      {...props}
+    >
+      {label}
+    </Link>
+  );
+};
 
 const Navbar: React.FC = () => {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isPastHero, setIsPastHero] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const isIndexPage = !!useMatch({ path: "/", end: true });
 
@@ -12,16 +41,14 @@ const Navbar: React.FC = () => {
     const heroHeight = window.innerHeight;
 
     if (!isIndexPage) {
-      setIsVisible(true);
+      setIsPastHero(true);
       return;
     }
 
-    if (isIndexPage && window.scrollY < heroHeight) {
-      setIsVisible(false);
-    }
+    setIsPastHero(window.scrollY > heroHeight);
 
     const handleScroll = () => {
-      setIsVisible(window.scrollY > heroHeight);
+      setIsPastHero(window.scrollY > heroHeight);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -31,88 +58,120 @@ const Navbar: React.FC = () => {
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
   return (
-    <AnimatePresence>
-      {isVisible && (
-        <motion.nav
-          initial={{ y: -100, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: -100, opacity: 0 }}
-          transition={{ duration: 0.3, bounce: 0, type: "spring" }}
-          className="border-primary/20 fixed top-0 right-0 left-0 z-50 m-3 rounded-md border bg-white/50 shadow-md backdrop-blur-md"
-        >
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex h-14 items-center justify-between sm:h-16">
-              <Link
-                to="/"
-                onClick={closeMobileMenu}
-                className="text-primary font-serif text-lg font-bold sm:text-xl lg:text-2xl"
-              >
-                Praça Sérgio Pacheco
-              </Link>
+    <nav
+      className={`border-primary/20 z-50 transition-all duration-300 ${
+        isPastHero
+          ? "fixed top-0 right-0 left-0 m-3 rounded-md border bg-white/50 shadow-md backdrop-blur-md"
+          : "absolute top-0 right-0 left-0 border-transparent bg-transparent"
+      }`}
+    >
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex h-14 items-center justify-between sm:h-16">
+          {isPastHero && (
+            <Link
+              to="/"
+              onClick={closeMobileMenu}
+              className="text-primary font-serif text-lg font-bold transition-colors sm:text-xl lg:text-2xl"
+            >
+              Praça Sérgio Pacheco
+            </Link>
+          )}
 
-              {/* Desktop Navigation */}
-              <div className="text-primary hidden gap-4 font-medium sm:flex lg:gap-6">
-                <Link
-                  to="/"
-                  className="hover:text-primary/70 text-sm transition-colors lg:text-base"
-                >
-                  Início
-                </Link>
-                <Link
-                  to="/history"
-                  className="hover:text-primary/70 text-sm transition-colors lg:text-base"
-                >
-                  História
-                </Link>
-              </div>
-
-              {/* Mobile Menu Button */}
-              <button
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="hover:text-primary touch-manipulation p-2 text-gray-700 transition-colors sm:hidden"
-                aria-label="Toggle menu"
-              >
-                {isMobileMenuOpen ? (
-                  <X className="h-6 w-6" />
-                ) : (
-                  <Menu className="h-6 w-6" />
-                )}
-              </button>
-            </div>
-
-            {/* Mobile Navigation */}
-            <AnimatePresence>
-              {isMobileMenuOpen && (
-                <motion.div
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: "auto", opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                  className="overflow-hidden sm:hidden"
-                >
-                  <div className="space-y-3 py-4">
-                    <Link
-                      to="/"
-                      onClick={closeMobileMenu}
-                      className="hover:text-primary block touch-manipulation py-2 text-gray-700 transition-colors"
-                    >
-                      Início
-                    </Link>
-                    <Link
-                      to="/history"
-                      onClick={closeMobileMenu}
-                      className="hover:text-primary block touch-manipulation py-2 text-gray-700 transition-colors"
-                    >
-                      História
-                    </Link>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
+          {/* Desktop Navigation */}
+          <div
+            className={`hidden gap-4 font-medium transition-colors sm:flex lg:gap-6 ${
+              isPastHero ? "text-primary" : "text-white"
+            }`}
+          >
+            <Link
+              to="/"
+              className={`text-sm transition-colors lg:text-base ${
+                isPastHero ? "hover:text-primary/70" : "hover:text-white/70"
+              }`}
+            >
+              Início
+            </Link>
+            <Link
+              to="/history"
+              className={`text-sm transition-colors lg:text-base ${
+                isPastHero ? "hover:text-primary/70" : "hover:text-white/70"
+              }`}
+            >
+              História
+            </Link>
+            <Link
+              to="/#gallery"
+              className={`text-sm transition-colors lg:text-base ${
+                isPastHero ? "hover:text-primary/70" : "hover:text-white/70"
+              }`}
+            >
+              Galeria
+            </Link>
           </div>
-        </motion.nav>
-      )}
-    </AnimatePresence>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className={`touch-manipulation p-2 transition-colors sm:hidden ${
+              isPastHero
+                ? "hover:text-primary text-gray-700"
+                : "text-white hover:text-white/70"
+            }`}
+            aria-label="Toggle menu"
+          >
+            {isMobileMenuOpen ? (
+              <X className="h-6 w-6" />
+            ) : (
+              <Menu className="h-6 w-6" />
+            )}
+          </button>
+        </div>
+
+        {/* Mobile Navigation */}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className={`overflow-hidden sm:hidden ${
+                !isPastHero
+                  ? "absolute top-full left-4 mt-2 w-auto min-w-[200px]"
+                  : ""
+              }`}
+            >
+              <div
+                className={`space-y-3 py-4 ${
+                  !isPastHero
+                    ? "rounded-md bg-black/70 px-6 backdrop-blur-sm"
+                    : ""
+                }`}
+              >
+                <MobileLink
+                  to="/"
+                  closeMobileMenu={closeMobileMenu}
+                  isPastHero={isPastHero}
+                  label="Início"
+                />
+                <MobileLink
+                  to="/history"
+                  closeMobileMenu={closeMobileMenu}
+                  isPastHero={isPastHero}
+                  label="História"
+                />
+                <MobileLink
+                  to="#gallery"
+                  closeMobileMenu={closeMobileMenu}
+                  isPastHero={isPastHero}
+                  label="Galeria"
+                />
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </nav>
   );
 };
 
