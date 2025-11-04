@@ -103,11 +103,6 @@ const Navbar: React.FC = () => {
           >
             <DesktopLink label="Início" to="/" isPastHero={isPastHero} />
             <DesktopLink
-              label="História"
-              to="/history"
-              isPastHero={isPastHero}
-            />
-            <DesktopLink
               label="Galeria"
               to="/#gallery"
               isPastHero={isPastHero}
@@ -115,6 +110,11 @@ const Navbar: React.FC = () => {
             <DesktopLink
               label="Eventos"
               to="/#eventos"
+              isPastHero={isPastHero}
+            />
+            <DesktopLink
+              label="História"
+              to="/history"
               isPastHero={isPastHero}
             />
           </div>
@@ -165,10 +165,10 @@ const Navbar: React.FC = () => {
                   label="Início"
                 />
                 <MobileLink
-                  to="/history"
+                  to="/#gallery"
                   closeMobileMenu={closeMobileMenu}
                   isPastHero={isPastHero}
-                  label="História"
+                  label="Galeria"
                 />
                 <MobileLink
                   to="#gallery"
@@ -177,10 +177,10 @@ const Navbar: React.FC = () => {
                   label="Galeria"
                 />
                 <MobileLink
-                  to="/#eventos"
+                  to="/history"
                   closeMobileMenu={closeMobileMenu}
                   isPastHero={isPastHero}
-                  label="Eventos"
+                  label="História"
                 />
               </div>
             </motion.div>
