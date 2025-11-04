@@ -16,7 +16,7 @@ const Gallery: React.FC = () => {
   ];
 
   return (
-    <div className="bg-primary/5 py-16 mt-32 overflow-hidden">
+    <div className="bg-primary/5 mt-32 overflow-hidden py-24" id="gallery">
       <SectionContainer className="w-full">
         <SectionTitle
           title="Galeria de Imagens"
