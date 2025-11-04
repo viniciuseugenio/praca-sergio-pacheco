@@ -32,6 +32,24 @@ const MobileLink: React.FC<MobileLinkProps> = ({
   );
 };
 
+type DesktopLinkProps = LinkProps & {
+  isPastHero: boolean;
+  label: string;
+};
+
+const DesktopLink: React.FC<DesktopLinkProps> = ({ to, label, isPastHero }) => {
+  return (
+    <Link
+      to={to}
+      className={`text-sm transition-colors lg:text-base ${
+        isPastHero ? "hover:text-primary/70" : "hover:text-white/70"
+      }`}
+    >
+      {label}
+    </Link>
+  );
+};
+
 const Navbar: React.FC = () => {
   const [isPastHero, setIsPastHero] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -83,30 +101,17 @@ const Navbar: React.FC = () => {
               isPastHero ? "text-primary" : "text-white"
             }`}
           >
-            <Link
-              to="/"
-              className={`text-sm transition-colors lg:text-base ${
-                isPastHero ? "hover:text-primary/70" : "hover:text-white/70"
-              }`}
-            >
-              Início
-            </Link>
-            <Link
+            <DesktopLink label="Início" to="/" isPastHero={isPastHero} />
+            <DesktopLink
+              label="História"
               to="/history"
-              className={`text-sm transition-colors lg:text-base ${
-                isPastHero ? "hover:text-primary/70" : "hover:text-white/70"
-              }`}
-            >
-              História
-            </Link>
-            <Link
+              isPastHero={isPastHero}
+            />
+            <DesktopLink
+              label="Galeria"
               to="/#gallery"
-              className={`text-sm transition-colors lg:text-base ${
-                isPastHero ? "hover:text-primary/70" : "hover:text-white/70"
-              }`}
-            >
-              Galeria
-            </Link>
+              isPastHero={isPastHero}
+            />
           </div>
 
           {/* Mobile Menu Button */}
