@@ -21,6 +21,9 @@ const Gallery: React.FC = () => {
         <SectionTitle
           title="Galeria de Imagens"
           description="Explore a beleza natural e as diversas atrações da Praça Sérgio Pacheco"
+          button
+          href="/gallery"
+          buttonLabel="Veja mais fotos"
         />
       </SectionContainer>
       <motion.div
@@ -28,7 +31,7 @@ const Gallery: React.FC = () => {
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ type: "spring", duration: 0.6, delay: 0.3 }}
-        className="w-full h-full"
+        className="h-full w-full"
       >
         <div className="flex">
           <Swiper
@@ -44,18 +47,18 @@ const Gallery: React.FC = () => {
             {slides.map((slide, i) => (
               <SwiperSlide className="max-w-4xl" key={i}>
                 <div
-                  className={`h-36 md:h-2/5 lg:h-1/5 xl:h-[710px] w-auto shadow-md hover:shadow-lg duration-700`}
+                  className={`h-52 w-auto shadow-md duration-700 hover:shadow-lg min-[510px]:h-3/5 sm:h-96 md:h-2/5 lg:h-1/5 xl:h-[640px]`}
                 >
                   <img
-                    className="object-cover rounded-md h-full w-full"
+                    className="h-full w-full rounded-md object-cover"
                     src={slide}
                   />
                 </div>
                 <div className="mt-4">
-                  <h3 className="text-xl font-medium md:text-3xl font-serif">
+                  <h3 className="font-serif text-xl font-medium md:text-3xl">
                     Nostrum nesciunt, repellat accusantium
                   </h3>
-                  <p className="mt-2 text-sm md:text-base opacity-90">
+                  <p className="mt-2 text-sm opacity-90 md:text-base">
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                     Distinctio cumque accusantium voluptatem dicta ducimus
                     quasi, ab harum? Sed animi ipsa! Mollitia ex iure velit esse

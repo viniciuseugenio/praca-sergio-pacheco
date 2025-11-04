@@ -1,6 +1,7 @@
 import { MotionConfig } from "motion/react";
 import { BrowserRouter, Route, Routes } from "react-router";
 import Layout from "./components/Layout";
+import GalleryPage from "./pages/GalleryPage";
 import History from "./pages/History";
 import Index from "./pages/Index";
 
@@ -19,6 +20,7 @@ function App() {
           <Route element={<Layout />}>
             <Route path="/" element={<Index />} />
             <Route path="/history" element={<History />} />
+            <Route path="/gallery" element={<GalleryPage />} />
           </Route>
         </Routes>
       </BrowserRouter>
