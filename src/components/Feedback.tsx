@@ -74,7 +74,7 @@ const Feedback: React.FC = () => {
           />
           <div className="flex flex-col gap-1 col-span-2">
             <label htmlFor="mensagem" className="font-semibold text-primary">
-              Categoria
+              Mensagem
             </label>
             <textarea
               id="mensagem"
