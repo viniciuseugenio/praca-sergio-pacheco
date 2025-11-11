@@ -13,6 +13,7 @@ const Layout: React.FC = () => {
         const element = document.getElementById(id);
         if (element) {
           element.scrollIntoView({ behavior: "smooth", block: "start" });
+          element.focus();
         }
       }, 100);
     } else {
@@ -23,7 +24,9 @@ const Layout: React.FC = () => {
   return (
     <>
       <Navbar />
-      <Outlet />
+      <main id="main-content">
+        <Outlet />
+      </main>
       <Footer />
     </>
   );

@@ -13,18 +13,20 @@ const InputField: React.FC<InputFieldProps> = ({
   col_span = false,
   ...props
 }) => {
+  const idLabel = `${id}-label`;
   return (
     <div
       className={twMerge(
-        "flex flex-col gap-1 col-span-2",
+        "col-span-2 flex flex-col gap-1",
         !col_span && "md:col-span-1",
       )}
     >
-      <label htmlFor={id} className="font-semibold text-primary">
+      <label id={idLabel} htmlFor={id} className="text-primary font-semibold">
         {label}
       </label>
       <input
-        className="outline-none placeholder-primary/70 focus:ring-2 ring-offset-2 ring-primary/80 duration-300 h-12 px-3 border-primary/20 rounded-md border"
+        aria-describedby={idLabel}
+        className="placeholder-primary/70 ring-primary/80 border-primary/20 h-12 rounded-md border px-3 ring-offset-2 duration-300 outline-none focus:ring-2"
         placeholder={placeholder}
         {...props}
       />

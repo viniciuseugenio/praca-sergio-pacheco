@@ -47,6 +47,7 @@ const History: React.FC = () => {
             <img
               className="h-full w-full rounded-md"
               src="https://images.unsplash.com/photo-1610103711589-618f3812b0d6?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1470"
+              alt="Imagem genérica da praça Sérgio Pacheco"
             />
           </motion.div>
         </div>
@@ -65,7 +66,11 @@ const History: React.FC = () => {
           área fosse destinada a fins cívicos e sociais.
         </p>
         <div className="mt-6 flex flex-col items-center">
-          <img src={inaguracaoPraca} className="w-12/12 rounded-md md:w-7/12" />
+          <img
+            alt="Imagem da inauguração da praça, em 1976."
+            src={inaguracaoPraca}
+            className="w-12/12 rounded-md md:w-7/12"
+          />
           <span className="mt-1 text-sm opacity-80">
             Imagem da inauguração da praça, em 1976.
           </span>
@@ -110,7 +115,11 @@ const History: React.FC = () => {
             , completou Oliveira.
           </p>
           <div className="flex flex-col items-center">
-            <img src={maquete} className="w-10/12 md:w-4/12" />
+            <img
+              src={maquete}
+              className="w-10/12 md:w-4/12"
+              alt="Fotografia da Maquete do Projeto de Ary Garcia Roza e Roberto Burle Marx para a praça"
+            />
             <span className="mt-3 text-sm opacity-80">
               Fotografia da Maquete do Projeto de Ary Garcia Roza e Roberto
               Burle Marx para a praça

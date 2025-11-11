@@ -27,6 +27,8 @@ const Card: React.FC<CardProps> = ({
 }) => {
   return (
     <motion.section
+      role="listitem"
+      tabIndex={0}
       initial={{ opacity: 0, x: idx % 2 === 0 ? -40 : 40 }}
       whileInView={{ opacity: 1, x: 0 }}
       transition={{ type: "spring", bounce: 0, delay: 0.1 + idx * 0.06 }}
@@ -105,14 +107,14 @@ const Timeline: React.FC = () => {
     <SectionContainer className="mt-32">
       <h2 className="title mb-3 text-3xl">Linha do tempo da praça</h2>
 
-      <div className="relative mt-10 flex flex-col justify-items-center gap-y-10 lg:justify-items-normal lg:gap-y-4">
+      <ol className="relative mt-10 flex flex-col justify-items-center gap-y-10 lg:justify-items-normal lg:gap-y-4">
         {/* Vertical timeline line */}
         <div
           aria-hidden="true"
           className="bg-primary/70 absolute left-1/2 hidden h-full w-1 -translate-x-1/2 rounded-full lg:block"
         />
         {historyItems.map((item, idx) => (
-          <div
+          <ol
             key={item.date}
             className={twMerge(
               "relative flex",
@@ -128,9 +130,9 @@ const Timeline: React.FC = () => {
               <p>{item.content}</p>
             </Card>
             <LineDot />
-          </div>
+          </ol>
         ))}
-      </div>
+      </ol>
     </SectionContainer>
   );
 };

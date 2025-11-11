@@ -25,7 +25,7 @@ const TrajectBox: React.FC<TrajectBoxProps> = ({
       className="border-primary/10 mt-5 grid grid-cols-[auto_1fr] gap-4 rounded-md border bg-white p-6 shadow-sm"
     >
       <div className="bg-primary/20 text-primary h-fit w-fit rounded-md p-3">
-        <Icon />
+        <Icon aria-hidden="true" />
       </div>
       <div className="flex flex-col gap-2">
         <h3 className="text-primary font-serif text-xl font-semibold">
@@ -97,6 +97,7 @@ const PlanVisit: React.FC = () => {
                   href="https://maps.app.goo.gl/XbfRvZFugMRaqiYr7"
                   className="text-primary cursor-pointer text-sm underline"
                   target="_blank"
+                  rel="noopener noreferrer"
                 >
                   Veja no Google Maps
                 </a>

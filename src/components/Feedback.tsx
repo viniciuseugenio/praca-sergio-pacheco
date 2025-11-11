@@ -16,22 +16,22 @@ const Feedback: React.FC = () => {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ type: "spring", bounce: 0 }}
         viewport={{ once: true }}
-        className="shadow-md border-primary/10 border p-6 mt-10 rounded-md"
+        className="border-primary/10 mt-10 rounded-md border p-6 shadow-md"
       >
-        <div className="grid-cols-[auto_1fr] grid gap-3">
-          <div className="bg-primary/10 p-3 h-fit w-fit rounded-md text-primary">
+        <div className="grid grid-cols-[auto_1fr] gap-3">
+          <div className="bg-primary/10 text-primary h-fit w-fit rounded-md p-3">
             <MessageSquare />
           </div>
           <div>
-            <h3 className="title text-xl sm:text-2xl font-semibold">
+            <h3 className="title text-xl font-semibold sm:text-2xl">
               Formulário para feedback
             </h3>
-            <p className="opacity-90 text-primary text-sm sm:text-base">
+            <p className="text-primary text-sm opacity-90 sm:text-base">
               Nos ajude a deixar a praça e o website ainda melhores!
             </p>
           </div>
         </div>
-        <form className="grid-cols-1 md:grid-cols-2 grid gap-6 mt-6">
+        <form className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
           <InputField
             id="name"
             name="name"
@@ -46,13 +46,13 @@ const Feedback: React.FC = () => {
             placeholder="seu.email@exemplo.com"
             type="email"
           />
-          <div className="flex col-span-2 flex-col gap-1">
-            <label htmlFor="category" className="font-semibold text-primary">
+          <div className="col-span-2 flex flex-col gap-1">
+            <label htmlFor="category" className="text-primary font-semibold">
               Categoria
             </label>
             <select
               id="category"
-              className="h-12 w-full rounded-md border border-primary/20 bg-background px-3 py-2 text-base ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              className="border-primary/20 bg-background ring-offset-background focus-visible:ring-ring h-12 w-full rounded-md border px-3 py-2 text-base focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
             >
               <option value="website">Website</option>
               <option value="praca">Praça</option>
@@ -72,23 +72,29 @@ const Feedback: React.FC = () => {
             label="Assunto"
             col_span
           />
-          <div className="flex flex-col gap-1 col-span-2">
-            <label htmlFor="mensagem" className="font-semibold text-primary">
+          <div className="col-span-2 flex flex-col gap-1">
+            <label
+              htmlFor="mensagem"
+              id="mensagem-label"
+              className="text-primary font-semibold"
+            >
               Mensagem
             </label>
             <textarea
               id="mensagem"
-              className="w-full rounded-md border duration-300 border-primary/20 bg-background px-3 py-2 text-base ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              name="mensagem"
+              aria-describedby="mensagem-label"
+              className="border-primary/20 bg-background ring-offset-background focus-visible:ring-ring w-full rounded-md border px-3 py-2 text-base duration-300 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
               placeholder="Compartilhe seu feedback, sugestões ou críticas. Lemos cada mensagem com atenção."
               rows={4}
             />
           </div>
           <button
             type="button"
-            className="flex mt-6 gap-2 col-span-2 text-white w-full justify-center md:justify-start md:col-span-1 md:w-fit px-5 py-3 rounded-md duration-300 hover:bg-primary-hover cursor-pointer bg-primary items-center"
+            className="hover:bg-primary-hover bg-primary col-span-2 mt-6 flex w-full cursor-pointer items-center justify-center gap-2 rounded-md px-5 py-3 text-white duration-300 md:col-span-1 md:w-fit md:justify-start"
           >
             <Send className="h-5 w-5" />
-            <span className="font-medium text-lg">Enviar feedback</span>
+            <span className="text-lg font-medium">Enviar feedback</span>
           </button>
         </form>
       </motion.div>

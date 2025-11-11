@@ -1,4 +1,4 @@
-import { Navigation, Pagination } from "swiper/modules";
+import { Navigation, Pagination, Keyboard, A11y } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SectionContainer from "./UI/SectionContainer";
 import SectionTitle from "./UI/SectionTitle";
@@ -38,11 +38,17 @@ const Gallery: React.FC = () => {
             spaceBetween={50}
             speed={550}
             slidesPerView="auto"
-            modules={[Navigation, Pagination]}
+            modules={[Navigation, Pagination, Keyboard, A11y]}
             navigation
             pagination
             centeredSlides
             autoHeight
+            a11y={{
+              prevSlideMessage: "Imagem anterior",
+              nextSlideMessage: "Próxima imagem",
+              paginationBulletMessage: "Ir para imagem {{index}}",
+            }}
+            keyboard={{ enabled: true }}
           >
             {slides.map((slide, i) => (
               <SwiperSlide className="max-w-4xl" key={i}>
@@ -52,12 +58,13 @@ const Gallery: React.FC = () => {
                   <img
                     className="h-full w-full rounded-md object-cover"
                     src={slide}
+                    alt={`Imagem da praça Sérgio Pacheco - Número ${i}`}
                   />
                 </div>
                 <div className="mt-4">
-                  <h3 className="font-serif text-xl font-medium md:text-3xl">
+                  <h2 className="font-serif text-xl font-medium md:text-3xl">
                     Nostrum nesciunt, repellat accusantium
-                  </h3>
+                  </h2>
                   <p className="mt-2 text-sm opacity-90 md:text-base">
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                     Distinctio cumque accusantium voluptatem dicta ducimus

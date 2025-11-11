@@ -30,10 +30,10 @@ const InfoCard: React.FC<SiteInfoCard> = ({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: 0.1 + idx * 0.06, duration: 0.6 }}
-      className="group  hover:ring-1 transition-colors ring-primary/20 hover:shadow-md shadow-sm rounded-md gap-3 p-5 sm:p-8 shadow-[#a9ae9e] flex flex-col"
+      className="group ring-primary/20 flex flex-col gap-3 rounded-md p-5 shadow-sm shadow-[#a9ae9e] transition-colors hover:shadow-md hover:ring-1 sm:p-8"
     >
-      <div className="bg-primary/15 group-hover:bg-primary/25 duration-300 inline-block p-2 rounded-md w-fit">
-        <Icon className="text-primary" />
+      <div className="bg-primary/15 group-hover:bg-primary/25 inline-block w-fit rounded-md p-2 duration-300">
+        <Icon aria-hidden="true" className="text-primary" />
       </div>
 
       <p className="font-serif text-xl">{title}</p>
@@ -88,7 +88,7 @@ const HowToUse: React.FC = () => {
         title="Como usar esse website?"
         description="Nosso website tem o propósito de simplicidade e acessibilidade para todas as idades. Aqui está o que você pode descobrir e como navegar por essa experiência digital."
       />
-      <div className="grid mb-12 gap-6 mt-12 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 grid-rows-2">
+      <div className="mt-12 mb-12 grid grid-cols-1 grid-rows-2 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {cards.map((card, idx) => (
           <InfoCard
             idx={idx}

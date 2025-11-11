@@ -132,7 +132,9 @@ const Navbar: React.FC = () => {
                 ? "hover:text-primary text-gray-700"
                 : "text-white hover:text-white/70"
             }`}
-            aria-label="Toggle menu"
+            aria-label={isMobileMenuOpen ? "Fechar menu" : "Abrir menu"}
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-menu"
           >
             {isMobileMenuOpen ? (
               <X className="h-6 w-6" />
@@ -155,6 +157,7 @@ const Navbar: React.FC = () => {
                   ? "absolute top-full left-4 mt-2 w-auto min-w-[200px]"
                   : ""
               }`}
+              role="navigation"
             >
               <div
                 className={`space-y-3 py-4 ${

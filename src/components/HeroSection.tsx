@@ -23,11 +23,13 @@ const HeroSection: React.FC = () => {
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${heroImage})` }}
+        role="img"
+        aria-label="Uma imagem genérica da praça Sérgio Pacheco"
       >
-        <div className="absolute inset-0 opacity-70 bg-black" />
+        <div className="absolute inset-0 bg-black opacity-70" />
       </div>
 
-      <div className="container mx-auto absolute flex flex-col z-10 h-full px-4 sm:px-6 lg:px-8 items-start justify-between inset-0 pt-16 sm:pt-20 lg:pt-24">
+      <div className="absolute inset-0 z-10 container mx-auto flex h-full flex-col items-start justify-between px-4 pt-16 sm:px-6 sm:pt-20 lg:px-8 lg:pt-24">
         <div>
           <motion.h1
             initial={{ opacity: 0, x: -20 }}
@@ -38,7 +40,7 @@ const HeroSection: React.FC = () => {
               delay: 0.1,
               bounce: 0,
             }}
-            className="font-serif text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-tight"
+            className="font-serif text-3xl leading-tight text-white sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl"
           >
             Praça Sérgio Pacheco
           </motion.h1>
@@ -51,7 +53,7 @@ const HeroSection: React.FC = () => {
               type: "spring",
               bounce: 0,
             }}
-            className="text-white text-sm sm:text-base md:text-lg max-w-lg leading-relaxed"
+            className="max-w-lg text-sm leading-relaxed text-white sm:text-base md:text-lg"
           >
             Descubra a natureza, lazer e as histórias que marcam e moldam nossa
             cidade
@@ -62,10 +64,11 @@ const HeroSection: React.FC = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.2, delay: 0.44, type: "spring", bounce: 0 }}
           onClick={onClick}
-          className="flex gap-2 text-center items-center transition-colors cursor-pointer mb-12 sm:mb-16 lg:mb-20 bg-primary hover:bg-primary-hover duration-300 text-white rounded-full px-6 sm:px-8 py-3 text-sm sm:text-base touch-manipulation"
+          className="bg-primary hover:bg-primary-hover mb-12 flex cursor-pointer touch-manipulation items-center gap-2 rounded-full px-6 py-3 text-center text-sm text-white transition-colors duration-300 sm:mb-16 sm:px-8 sm:text-base lg:mb-20"
+          aria-label="Rolar para seção 'Como usar este site?'"
         >
           <span className="font-semibold">Entenda melhor este site</span>
-          <ArrowDown className="h-4 w-4 sm:h-5 sm:w-5 flex shrink-0" />
+          <ArrowDown className="flex h-4 w-4 shrink-0 sm:h-5 sm:w-5" />
         </motion.button>
       </div>
     </section>

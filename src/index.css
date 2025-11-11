@@ -1,7 +1,9 @@
 @import "tailwindcss";
 @import "swiper/swiper.css";
-@import "swiper/css/pagination";
 @import "swiper/css/navigation";
+@import "swiper/css/pagination";
+@import "swiper/css/keyboard";
+@import "swiper/css/a11y";
 
 @theme {
   --font-sans: "Inter";

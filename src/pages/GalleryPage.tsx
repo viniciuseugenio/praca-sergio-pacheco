@@ -99,6 +99,8 @@ const GalleryPage: React.FC = () => {
               transition={{ duration: 0.4, delay: index * 0.05 }}
               className="group relative cursor-pointer break-inside-avoid overflow-hidden rounded-lg shadow-md transition-all duration-300 hover:shadow-xl active:scale-95"
               onClick={() => setSelectedImage(image)}
+              tabIndex={0}
+              onKeyDown={() => setSelectedImage(image)}
             >
               <img
                 src={image.url}
@@ -123,11 +125,14 @@ const GalleryPage: React.FC = () => {
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4"
             onClick={() => setSelectedImage(null)}
+            role="dialog"
+            aria-modal="true"
           >
             <button
-              className="absolute top-4 right-4 z-10 text-white transition-colors hover:text-gray-300"
+              className="absolute top-4 right-4 z-10 p-1 text-white transition-colors hover:text-gray-300"
               onClick={() => setSelectedImage(null)}
               aria-label="Fechar"
+              autoFocus
             >
               <X className="h-8 w-8" />
             </button>
