@@ -2,10 +2,10 @@ import { Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useRef } from "react";
 import { Link } from "react-router";
-import NavbarLink from "./NavbarLink";
-import type { LinksArray } from "./NewNavbar";
-import { useMobileMenu } from "../../hooks/useMobileMenu";
 import { useClickOutside } from "../../hooks/useClickOutside";
+import { useMobileMenu } from "../../hooks/useMobileMenu";
+import type { LinksArray } from "../Navbar";
+import NavbarLink from "./NavbarLink";
 
 type FloatingNavbarProps = {
   isPastHero: boolean;
@@ -16,7 +16,8 @@ const FloatingNavbar: React.FC<FloatingNavbarProps> = ({
   isPastHero,
   links,
 }) => {
-  const { isMobileMenuOpen, closeMobileMenu, toggleMobileMenu } = useMobileMenu(!isPastHero);
+  const { isMobileMenuOpen, closeMobileMenu, toggleMobileMenu } =
+    useMobileMenu(!isPastHero);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
 
   useClickOutside(mobileMenuRef, closeMobileMenu, isMobileMenuOpen);
@@ -48,7 +49,11 @@ const FloatingNavbar: React.FC<FloatingNavbarProps> = ({
               <button
                 onClick={toggleMobileMenu}
                 className="touch-manipulation lg:hidden"
-                aria-label={isMobileMenuOpen ? "Fecha o menu" : "Abre o menu para celulares"}
+                aria-label={
+                  isMobileMenuOpen
+                    ? "Fecha o menu"
+                    : "Abre o menu para celulares"
+                }
                 aria-expanded={isMobileMenuOpen}
                 aria-controls="floating-mobile-menu"
               >

@@ -1,27 +1,34 @@
 import { Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useRef } from "react";
-import NavbarLink from "./NavbarLink";
-import type { LinksArray } from "./NewNavbar";
-import { useMobileMenu } from "../../hooks/useMobileMenu";
 import { useClickOutside } from "../../hooks/useClickOutside";
+import { useMobileMenu } from "../../hooks/useMobileMenu";
+import type { LinksArray } from "../Navbar";
+import NavbarLink from "./NavbarLink";
 
 const HERO_HEIGHT = typeof window !== "undefined" ? window.innerHeight : 0;
 
 const HeroNavbar: React.FC<{ links: LinksArray }> = ({ links }) => {
-  const shouldClose = typeof window !== "undefined" && window.scrollY > HERO_HEIGHT;
-  const { isMobileMenuOpen, closeMobileMenu, toggleMobileMenu } = useMobileMenu(shouldClose);
+  const shouldClose =
+    typeof window !== "undefined" && window.scrollY > HERO_HEIGHT;
+  const { isMobileMenuOpen, closeMobileMenu, toggleMobileMenu } =
+    useMobileMenu(shouldClose);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
 
   useClickOutside(mobileMenuRef, closeMobileMenu, isMobileMenuOpen);
 
   return (
-    <nav className="absolute top-0 right-0 left-0 z-50" aria-label="Main navigation">
+    <nav
+      className="absolute top-0 right-0 left-0 z-50"
+      aria-label="Main navigation"
+    >
       <div className="relative container mx-auto px-4 py-6 sm:px-6 lg:px-8">
         <button
           onClick={toggleMobileMenu}
           className="touch-manipulation text-white lg:hidden"
-          aria-label={isMobileMenuOpen ? "Fecha o menu" : "Abre o menu para celulares"}
+          aria-label={
+            isMobileMenuOpen ? "Fecha o menu" : "Abre o menu para celulares"
+          }
           aria-expanded={isMobileMenuOpen}
           aria-controls="hero-mobile-menu"
         >
