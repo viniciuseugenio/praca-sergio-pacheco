@@ -67,8 +67,8 @@ class LoginView(APIView):
             value=str(refresh.access_token),
             max_age=15 * 60,  # 15 minutes
             httponly=True,
-            secure=not settings.DEBUG,  # True in production
-            samesite="Lax",
+            secure=True,  # Required for SameSite=None
+            samesite="None",  # Allow cross-site cookies
         )
 
         response.set_cookie(
@@ -76,8 +76,8 @@ class LoginView(APIView):
             value=str(refresh),
             max_age=max_age,
             httponly=True,
-            secure=not settings.DEBUG,
-            samesite="Lax",
+            secure=True,  # Required for SameSite=None
+            samesite="None",  # Allow cross-site cookies
         )
 
         return response
@@ -97,8 +97,8 @@ class LogoutView(APIView):
                 {"message": "Logout realizado com sucesso"},
                 status=status.HTTP_200_OK,
             )
-            response.delete_cookie("access_token")
-            response.delete_cookie("refresh_token")
+            response.delete_cookie("access_token", samesite="None", secure=True)
+            response.delete_cookie("refresh_token", samesite="None", secure=True)
             return response
 
         except Exception:
@@ -106,8 +106,8 @@ class LogoutView(APIView):
                 {"message": "Logout realizado"},
                 status=status.HTTP_200_OK,
             )
-            response.delete_cookie("access_token")
-            response.delete_cookie("refresh_token")
+            response.delete_cookie("access_token", samesite="None", secure=True)
+            response.delete_cookie("refresh_token", samesite="None", secure=True)
             return response
 
 
@@ -137,8 +137,8 @@ class CookieTokenRefreshView(APIView):
                 value=str(access_token),
                 max_age=15 * 60,  # 15 minutes
                 httponly=True,
-                secure=not settings.DEBUG,
-                samesite="Lax",
+                secure=True,  # Required for SameSite=None
+                samesite="None",  # Allow cross-site cookies
             )
 
             # If ROTATE_REFRESH_TOKENS is True, update refresh token too
@@ -152,8 +152,8 @@ class CookieTokenRefreshView(APIView):
                         else 7 * 24 * 60 * 60
                     ),
                     httponly=True,
-                    secure=not settings.DEBUG,
-                    samesite="Lax",
+                    secure=True,  # Required for SameSite=None
+                    samesite="None",  # Allow cross-site cookies
                 )
 
             return response
