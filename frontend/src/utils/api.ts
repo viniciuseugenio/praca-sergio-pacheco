@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://localhost:8000/api";
+const API_BASE_URL = "https://sergio-pacheco-app-iyhrl.ondigitalocean.app/api";
 
 interface FetchOptions extends RequestInit {
   requiresAuth?: boolean;
@@ -6,7 +6,7 @@ interface FetchOptions extends RequestInit {
 
 export async function apiRequest<T>(
   endpoint: string,
-  options: FetchOptions = {}
+  options: FetchOptions = {},
 ): Promise<T> {
   const { requiresAuth = false, ...fetchOptions } = options;
 
@@ -63,7 +63,7 @@ export const authApi = {
   login: async (
     username: string,
     password: string,
-    rememberMe: boolean = false
+    rememberMe: boolean = false,
   ) => {
     return apiRequest<{ message: string; user: any }>("/auth/login/", {
       method: "POST",
