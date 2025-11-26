@@ -1,3 +1,7 @@
+# ============================================================================
+# FRONTEND (Node.js / React)
+# ============================================================================
+
 # Logs
 logs
 *.log
@@ -7,7 +11,10 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Dependencies
 node_modules
+
+# Build outputs
 dist
 dist-ssr
 *.local
@@ -22,3 +29,91 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# ============================================================================
+# BACKEND (Django / Python)
+# ============================================================================
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual Environments
+venv/
+env/
+ENV/
+.venv
+.env
+*.env
+
+# Django
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+/staticfiles/
+/mediafiles/
+/static/
+/media/
+
+# Django migrations (optional - uncomment if you want to ignore migrations)
+# **/migrations/*.py
+# !**/migrations/__init__.py
+
+# Django secret key
+.secret_key
+
+# Celery
+celerybeat-schedule
+celerybeat.pid
+
+# pytest
+.pytest_cache/
+.coverage
+htmlcov/
+*.cover
+.hypothesis/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# pyenv
+.python-version
+
+# pipenv
+Pipfile.lock
+
+# Poetry
+poetry.lock
+
+# ============================================================================
+# GENERAL
+# ============================================================================
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Backup files
+*.bak
+*.backup
+*.tmp
+
+# Documentation build
+docs/_build/
+site/
