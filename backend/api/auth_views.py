@@ -97,8 +97,8 @@ class LogoutView(APIView):
                 {"message": "Logout realizado com sucesso"},
                 status=status.HTTP_200_OK,
             )
-            response.delete_cookie("access_token", samesite="None", secure=True)
-            response.delete_cookie("refresh_token", samesite="None", secure=True)
+            response.delete_cookie("access_token", samesite="None")
+            response.delete_cookie("refresh_token", samesite="None")
             return response
 
         except Exception:
@@ -106,8 +106,8 @@ class LogoutView(APIView):
                 {"message": "Logout realizado"},
                 status=status.HTTP_200_OK,
             )
-            response.delete_cookie("access_token", samesite="None", secure=True)
-            response.delete_cookie("refresh_token", samesite="None", secure=True)
+            response.delete_cookie("access_token", samesite="None")
+            response.delete_cookie("refresh_token", samesite="None")
             return response
 
 
