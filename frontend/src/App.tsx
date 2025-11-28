@@ -5,6 +5,7 @@ import Layout from "./components/Layout";
 import GalleryPage from "./pages/GalleryPage";
 import History from "./pages/History";
 import Index from "./pages/Index";
+import NatureElementsPage from "./pages/NatureElementsPage";
 import Admin from "./pages/Admin";
 import Dashboard from "./pages/Dashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -39,6 +40,7 @@ function App() {
                 <Route path="/" element={<Index />} />
                 <Route path="/history" element={<History />} />
                 <Route path="/gallery" element={<GalleryPage />} />
+                <Route path="/nature-elements" element={<NatureElementsPage />} />
               </Route>
               <Route path="/admin" element={<Admin />} />
               <Route
