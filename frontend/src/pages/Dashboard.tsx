@@ -1,10 +1,10 @@
-import { Calendar, Settings, Shrub } from "lucide-react";
+import { Calendar, Settings, Shrub, type LucideIcon } from "lucide-react";
 import { useNavigate } from "react-router";
 import DashboardNavbar from "../components/UI/DashboardNavbar";
 import { useAuth } from "../contexts/AuthContext";
 
 type ActionButton = {
-  Icon: LucideProps;
+  Icon: LucideIcon;
   to: string;
   title: string;
   description: string;
