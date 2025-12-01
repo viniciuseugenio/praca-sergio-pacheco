@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import NatureElementsPage from "./pages/NatureElementsPage";
 import Admin from "./pages/Admin";
 import Dashboard from "./pages/Dashboard";
+import EventManagement from "./pages/EventManagement";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { AuthProvider } from "./contexts/AuthContext";
 
@@ -48,6 +49,14 @@ function App() {
                 element={
                   <ProtectedRoute>
                     <Dashboard />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/admin/events"
+                element={
+                  <ProtectedRoute>
+                    <EventManagement />
                   </ProtectedRoute>
                 }
               />
