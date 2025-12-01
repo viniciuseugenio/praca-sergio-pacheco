@@ -1,15 +1,6 @@
 import { Calendar, Clock, MapPin, Users, type LucideProps } from "lucide-react";
 import { motion } from "motion/react";
-
-type EventCardProps = {
-  title: string;
-  children: string;
-  time: string;
-  date: string; // Temporary, change it later
-  local: string;
-  qtyPeople: string;
-  idx: number;
-};
+import type { Event } from "../../types/event";
 
 type EventCardInfoProps = {
   Icon: React.ForwardRefExoticComponent<Omit<LucideProps, "ref">>;
@@ -25,15 +16,35 @@ const EventCardInfo: React.FC<EventCardInfoProps> = ({ Icon, text }) => {
   );
 };
 
+type EventCardProps = Event & {
+  idx: number;
+  children: React.ReactNode;
+};
+
 const EventCard: React.FC<EventCardProps> = ({
+  idx,
   title,
   children,
+  day,
   time,
-  date,
-  local,
-  qtyPeople,
-  idx,
+  end_time,
+  address,
+  capacity,
 }) => {
+  const formatDate = (dateString: string) => {
+    return new Date(dateString).toLocaleDateString("pt-BR", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+    });
+  };
+
+  const formatTime = (timeString: string) => {
+    return timeString.substring(0, 5);
+  };
+
+  const timeFormatted = `${formatTime(time)} ${end_time && " - ".concat(formatTime(end_time))}`;
+
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.95 }}
@@ -50,10 +61,10 @@ const EventCard: React.FC<EventCardProps> = ({
       <h3 className="mb-3 font-serif text-xl font-medium">{title}</h3>
       <p className="mb-3 text-sm opacity-80">{children}</p>
       <ul className="flex flex-col gap-1">
-        <EventCardInfo Icon={Calendar} text={date} />
-        <EventCardInfo Icon={Clock} text={time} />
-        <EventCardInfo Icon={MapPin} text={local} />
-        <EventCardInfo Icon={Users} text={qtyPeople} />
+        <EventCardInfo Icon={Calendar} text={formatDate(day)} />
+        <EventCardInfo Icon={Clock} text={timeFormatted} />
+        <EventCardInfo Icon={MapPin} text={address} />
+        <EventCardInfo Icon={Users} text={capacity} />
       </ul>
     </motion.div>
   );

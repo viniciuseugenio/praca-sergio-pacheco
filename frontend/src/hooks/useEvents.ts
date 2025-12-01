@@ -1,14 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { eventsApi } from "../utils/api";
-
-interface Event {
-  id: number;
-  title: string;
-  description: string;
-  date: string;
-  location?: string;
-  image?: string;
-}
+import type { Event, UpdateEventDto } from "../types/event";
 
 // Query key factory for events
 export const eventKeys = {
@@ -72,7 +64,7 @@ export function useUpdateEvent() {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: ({ id, event }: { id: number; event: Partial<Event> }) =>
+    mutationFn: ({ id, event }: { id: number; event: UpdateEventDto }) =>
       eventsApi.update(id, event),
     onMutate: async ({ id, event }) => {
       await queryClient.cancelQueries({ queryKey: eventKeys.lists() });

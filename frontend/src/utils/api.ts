@@ -1,4 +1,4 @@
-const API_BASE_URL = "https://sergio-pacheco-app-iyhrl.ondigitalocean.app/api";
+const API_BASE_URL = "http://localhost:8000/api";
 
 interface FetchOptions extends RequestInit {
   requiresAuth?: boolean;
@@ -89,21 +89,23 @@ export const authApi = {
   },
 };
 
+import type { Event, CreateEventDto, UpdateEventDto } from "../types/event";
+
 export const eventsApi = {
   getAll: async () => {
-    return apiRequest<any[]>("/events/");
+    return apiRequest<Event[]>("/events/");
   },
 
-  create: async (event: any) => {
-    return apiRequest<any>("/events/", {
+  create: async (event: CreateEventDto) => {
+    return apiRequest<Event>("/events/", {
       method: "POST",
       body: JSON.stringify(event),
       requiresAuth: true,
     });
   },
 
-  update: async (id: number, event: any) => {
-    return apiRequest<any>(`/events/${id}/`, {
+  update: async (id: number, event: UpdateEventDto) => {
+    return apiRequest<Event>(`/events/${id}/`, {
       method: "PUT",
       body: JSON.stringify(event),
       requiresAuth: true,
