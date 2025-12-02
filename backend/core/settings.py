@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+
 import dj_database_url
 from decouple import Csv, config
 
@@ -44,6 +45,7 @@ INSTALLED_APPS = [
     "rest_framework_simplejwt.token_blacklist",
     "corsheaders",
     "api",
+    "storages",
 ]
 
 MIDDLEWARE = [
@@ -83,9 +85,7 @@ WSGI_APPLICATION = "core.wsgi.application"
 
 DATABASE_URL = config("DATABASE_URL", default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}")
 
-DATABASES = {
-    "default": dj_database_url.parse(DATABASE_URL, conn_max_age=600)
-}
+DATABASES = {"default": dj_database_url.parse(DATABASE_URL, conn_max_age=600)}
 
 
 # Password validation
@@ -127,8 +127,38 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # Media files (user uploads)
-MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media"
+USE_SPACES = config("USE_SPACES", default=False, cast=bool)
+
+if USE_SPACES:
+    # DigitalOcean Spaces configuration
+    AWS_ACCESS_KEY_ID = config("SPACES_KEY")
+    AWS_SECRET_ACCESS_KEY = config("SPACES_SECRET")
+    AWS_STORAGE_BUCKET_NAME = config("SPACES_BUCKET_NAME")
+    AWS_S3_ENDPOINT_URL = config("SPACES_ENDPOINT_URL")  # e.g., https://nyc3.digitaloceanspaces.com
+    AWS_S3_REGION_NAME = config("SPACES_REGION", default="nyc3")
+    
+    # Use CDN endpoint for serving files (faster delivery)
+    AWS_S3_CUSTOM_DOMAIN = config(
+        "SPACES_CDN_DOMAIN",
+        default=f'{AWS_STORAGE_BUCKET_NAME}.{AWS_S3_REGION_NAME}.cdn.digitaloceanspaces.com'
+    )
+    
+    # Cache and permissions settings
+    AWS_S3_OBJECT_PARAMETERS = {
+        'CacheControl': 'max-age=86400',  # Cache for 24 hours
+    }
+    AWS_LOCATION = 'media'
+    AWS_DEFAULT_ACL = 'public-read'
+    AWS_S3_FILE_OVERWRITE = False  # Don't overwrite files with same name
+    AWS_QUERYSTRING_AUTH = False  # Don't add auth query params to URLs
+    
+    # Use Spaces for media storage
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
+else:
+    # Local development - use filesystem
+    MEDIA_URL = "/media/"
+    MEDIA_ROOT = BASE_DIR / "media"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
