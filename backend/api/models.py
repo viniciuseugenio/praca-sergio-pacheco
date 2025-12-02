@@ -19,5 +19,21 @@ class Event(models.Model):
 
     def __str__(self):
         day_str = self.day.isoformat()
-        start_str = self.time.stfrtime("%H:%M")
+        start_str = self.time.strftime("%H:%M")
         return f"{self.title} - {day_str} {start_str}"
+
+
+class NatureElement(models.Model):
+    name = models.CharField(max_length=100)
+    scientific_name = models.CharField(max_length=150)
+    description = models.TextField(max_length=500)
+    type = models.CharField(max_length=50)
+    image = models.ImageField(upload_to='nature_elements/', blank=True, null=True)
+
+    class Meta:
+        ordering = ["name"]
+        verbose_name = "Elemento da Natureza"
+        verbose_name_plural = "Elementos da Natureza"
+
+    def __str__(self):
+        return f"{self.name} ({self.scientific_name})"
