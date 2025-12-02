@@ -70,9 +70,6 @@ const Gallery: React.FC = () => {
         <SectionTitle
           title="Galeria de Imagens"
           description="Veja quais são as nossas propostas para a revitalização da praça Sérgio Pacheco!"
-          button
-          href="/gallery"
-          buttonLabel="Veja mais fotos"
         />
       </SectionContainer>
       <motion.div
