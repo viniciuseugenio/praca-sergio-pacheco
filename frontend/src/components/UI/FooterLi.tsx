@@ -1,13 +1,19 @@
+import { Link } from "react-router";
+
 type FooterLiProps = {
   children: string;
+  to: string;
 };
 
-// Criei isso aqui pra ser reutilizável, ao invés de criar um por um,
-// se eu modificar aqui, modifica todos os links ali
-const FooterLi: React.FC<FooterLiProps> = ({ children }) => {
+const FooterLi: React.FC<FooterLiProps> = ({ children, to }) => {
   return (
-    <li className="hover:text-offwhite duration-300 transition-colors cursor-pointer text-offwhite/70">
-      {children}
+    <li>
+      <Link 
+        to={to}
+        className="hover:text-offwhite duration-300 transition-colors cursor-pointer text-offwhite/70"
+      >
+        {children}
+      </Link>
     </li>
   );
 };
