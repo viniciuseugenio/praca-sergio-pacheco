@@ -11,6 +11,7 @@ import Dashboard from "./pages/Dashboard";
 import EventManagement from "./pages/EventManagement";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { AuthProvider } from "./contexts/AuthContext";
+import NatureElementsManagement from "./pages/NatureElementsManagement";
 
 // Create a client
 const queryClient = new QueryClient({
@@ -41,7 +42,10 @@ function App() {
                 <Route path="/" element={<Index />} />
                 <Route path="/history" element={<History />} />
                 <Route path="/gallery" element={<GalleryPage />} />
-                <Route path="/nature-elements" element={<NatureElementsPage />} />
+                <Route
+                  path="/nature-elements"
+                  element={<NatureElementsPage />}
+                />
               </Route>
               <Route path="/admin" element={<Admin />} />
               <Route
@@ -57,6 +61,14 @@ function App() {
                 element={
                   <ProtectedRoute>
                     <EventManagement />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/admin/nature-elements"
+                element={
+                  <ProtectedRoute>
+                    <NatureElementsManagement />
                   </ProtectedRoute>
                 }
               />

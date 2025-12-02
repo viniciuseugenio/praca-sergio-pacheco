@@ -1,4 +1,5 @@
 const API_BASE_URL = "https://sergio-pacheco-app-iyhrl.ondigitalocean.app/api";
+// const API_BASE_URL = "http://localhost:8000/api";
 
 interface FetchOptions extends RequestInit {
   requiresAuth?: boolean;
@@ -90,6 +91,11 @@ export const authApi = {
 };
 
 import type { Event, CreateEventDto, UpdateEventDto } from "../types/event";
+import type {
+  NatureElement,
+  CreateNatureElementDto,
+  UpdateNatureElementDto,
+} from "../types/nature";
 
 export const eventsApi = {
   getAll: async () => {
@@ -114,6 +120,65 @@ export const eventsApi = {
 
   delete: async (id: number) => {
     return apiRequest<void>(`/events/${id}/`, {
+      method: "DELETE",
+      requiresAuth: true,
+    });
+  },
+};
+
+export const natureElementsApi = {
+  getAll: async () => {
+    return apiRequest<NatureElement[]>("/nature-elements/");
+  },
+
+  create: async (element: CreateNatureElementDto) => {
+    const formData = new FormData();
+    formData.append("name", element.name);
+    formData.append("scientific_name", element.scientific_name);
+    formData.append("description", element.description);
+    formData.append("type", element.type);
+    formData.append("image", element.image);
+
+    const response = await fetch(`${API_BASE_URL}/nature-elements/`, {
+      method: "POST",
+      credentials: "include",
+      body: formData,
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      throw new Error(errorData.error || "Request failed");
+    }
+
+    return response.json();
+  },
+
+  update: async (id: number, element: UpdateNatureElementDto) => {
+    const formData = new FormData();
+    if (element.name) formData.append("name", element.name);
+    if (element.scientific_name)
+      formData.append("scientific_name", element.scientific_name);
+    if (element.description)
+      formData.append("description", element.description);
+    if (element.type) formData.append("type", element.type);
+    if (element.image) formData.append("image", element.image);
+
+    const response = await fetch(`${API_BASE_URL}/nature-elements/${id}/`, {
+      method: "PUT",
+      credentials: "include",
+      body: formData,
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      throw new Error(errorData.error || "Request failed");
+    }
+
+    return response.json();
+  },
+
+  delete: async (id: number) => {
+    return apiRequest<void>(`/nature-elements/${id}/`, {
       method: "DELETE",
       requiresAuth: true,
     });

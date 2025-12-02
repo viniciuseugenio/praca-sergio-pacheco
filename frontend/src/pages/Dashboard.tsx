@@ -56,7 +56,7 @@ const Dashboard: React.FC = () => {
             Icon={Shrub}
             title="Gerenciar Plantas"
             description="Visualize, crie, edite e exclua elementos da natureza"
-            to="/admin/events"
+            to="/admin/nature-elements"
           />
 
           <ActionButton
