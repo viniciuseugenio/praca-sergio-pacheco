@@ -83,18 +83,9 @@ WSGI_APPLICATION = "core.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-DATABASE_URL = config("DATABASE_URL", default="")
+DATABASE_URL = config("DATABASE_URL", default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}")
 
-if DATABASE_URL:
-    DATABASES = {"default": dj_database_url.parse(DATABASE_URL, conn_max_age=600)}
-else:
-    # Fallback to SQLite for local development
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": BASE_DIR / "db.sqlite3",
-        }
-    }
+DATABASES = {"default": dj_database_url.parse(DATABASE_URL, conn_max_age=600)}
 
 
 # Password validation
@@ -151,26 +142,26 @@ if USE_SPACES:
     AWS_SECRET_ACCESS_KEY = SPACES_SECRET
     AWS_STORAGE_BUCKET_NAME = SPACES_BUCKET_NAME
     AWS_S3_ENDPOINT_URL = SPACES_ENDPOINT_URL
-    AWS_S3_REGION_NAME = config("SPACES_REGION", default="nyc3")
-    
+    AWS_S3_REGION_NAME = config("SPACES_REGION", default="atl1")
+
     # Use CDN endpoint for serving files (faster delivery)
     AWS_S3_CUSTOM_DOMAIN = config(
         "SPACES_CDN_DOMAIN",
-        default=f'{AWS_STORAGE_BUCKET_NAME}.{AWS_S3_REGION_NAME}.cdn.digitaloceanspaces.com'
+        default=f"{AWS_STORAGE_BUCKET_NAME}.{AWS_S3_REGION_NAME}.cdn.digitaloceanspaces.com",
     )
-    
+
     # Cache and permissions settings
     AWS_S3_OBJECT_PARAMETERS = {
-        'CacheControl': 'max-age=86400',  # Cache for 24 hours
+        "CacheControl": "max-age=86400",  # Cache for 24 hours
     }
-    AWS_LOCATION = 'media'
-    AWS_DEFAULT_ACL = 'public-read'
+    AWS_LOCATION = "media"
+    AWS_DEFAULT_ACL = "public-read"
     AWS_S3_FILE_OVERWRITE = False  # Don't overwrite files with same name
     AWS_QUERYSTRING_AUTH = False  # Don't add auth query params to URLs
-    
+
     # Use Spaces for media storage
-    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
+    DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+    MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/"
 else:
     # Local development or Spaces not configured - use filesystem
     MEDIA_URL = "/media/"
