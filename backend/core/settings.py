@@ -136,42 +136,43 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # Media files (user uploads)
-USE_SPACES = config("USE_SPACES", default=False, cast=bool)
+# Check if all required Spaces variables are present
+SPACES_KEY = config("SPACES_KEY", default="")
+SPACES_SECRET = config("SPACES_SECRET", default="")
+SPACES_BUCKET_NAME = config("SPACES_BUCKET_NAME", default="")
+SPACES_ENDPOINT_URL = config("SPACES_ENDPOINT_URL", default="")
+
+# Only use Spaces if ALL required variables are set
+USE_SPACES = all([SPACES_KEY, SPACES_SECRET, SPACES_BUCKET_NAME, SPACES_ENDPOINT_URL])
 
 if USE_SPACES:
     # DigitalOcean Spaces configuration
-    try:
-        AWS_ACCESS_KEY_ID = config("SPACES_KEY")
-        AWS_SECRET_ACCESS_KEY = config("SPACES_SECRET")
-        AWS_STORAGE_BUCKET_NAME = config("SPACES_BUCKET_NAME")
-        AWS_S3_ENDPOINT_URL = config("SPACES_ENDPOINT_URL")  # e.g., https://nyc3.digitaloceanspaces.com
-        AWS_S3_REGION_NAME = config("SPACES_REGION", default="nyc3")
-        
-        # Use CDN endpoint for serving files (faster delivery)
-        AWS_S3_CUSTOM_DOMAIN = config(
-            "SPACES_CDN_DOMAIN",
-            default=f'{AWS_STORAGE_BUCKET_NAME}.{AWS_S3_REGION_NAME}.cdn.digitaloceanspaces.com'
-        )
-        
-        # Cache and permissions settings
-        AWS_S3_OBJECT_PARAMETERS = {
-            'CacheControl': 'max-age=86400',  # Cache for 24 hours
-        }
-        AWS_LOCATION = 'media'
-        AWS_DEFAULT_ACL = 'public-read'
-        AWS_S3_FILE_OVERWRITE = False  # Don't overwrite files with same name
-        AWS_QUERYSTRING_AUTH = False  # Don't add auth query params to URLs
-        
-        # Use Spaces for media storage
-        DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-        MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
-    except Exception as e:
-        # Fallback to filesystem if Spaces config is incomplete
-        print(f"WARNING: Spaces configuration incomplete, falling back to filesystem: {e}")
-        MEDIA_URL = "/media/"
-        MEDIA_ROOT = BASE_DIR / "media"
+    AWS_ACCESS_KEY_ID = SPACES_KEY
+    AWS_SECRET_ACCESS_KEY = SPACES_SECRET
+    AWS_STORAGE_BUCKET_NAME = SPACES_BUCKET_NAME
+    AWS_S3_ENDPOINT_URL = SPACES_ENDPOINT_URL
+    AWS_S3_REGION_NAME = config("SPACES_REGION", default="nyc3")
+    
+    # Use CDN endpoint for serving files (faster delivery)
+    AWS_S3_CUSTOM_DOMAIN = config(
+        "SPACES_CDN_DOMAIN",
+        default=f'{AWS_STORAGE_BUCKET_NAME}.{AWS_S3_REGION_NAME}.cdn.digitaloceanspaces.com'
+    )
+    
+    # Cache and permissions settings
+    AWS_S3_OBJECT_PARAMETERS = {
+        'CacheControl': 'max-age=86400',  # Cache for 24 hours
+    }
+    AWS_LOCATION = 'media'
+    AWS_DEFAULT_ACL = 'public-read'
+    AWS_S3_FILE_OVERWRITE = False  # Don't overwrite files with same name
+    AWS_QUERYSTRING_AUTH = False  # Don't add auth query params to URLs
+    
+    # Use Spaces for media storage
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
 else:
-    # Local development - use filesystem
+    # Local development or Spaces not configured - use filesystem
     MEDIA_URL = "/media/"
     MEDIA_ROOT = BASE_DIR / "media"
 
