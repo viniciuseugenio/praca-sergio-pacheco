@@ -43,7 +43,7 @@ const NatureElements: React.FC = () => {
       />
 
       <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        {elements.map((element, idx) => (
+        {elements.slice(0, 4).map((element, idx) => (
           <NatureCard
             key={element.id}
             id={element.id}
