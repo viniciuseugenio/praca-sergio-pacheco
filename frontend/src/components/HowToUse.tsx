@@ -4,12 +4,11 @@ import {
   Camera,
   Leaf,
   MapPin,
-  ShoppingBag,
   type LucideProps,
 } from "lucide-react";
-import SectionTitle from "./UI/SectionTitle";
-import SectionContainer from "./UI/SectionContainer";
 import { motion } from "motion/react";
+import SectionContainer from "./UI/SectionContainer";
+import SectionTitle from "./UI/SectionTitle";
 
 type SiteInfoCard = {
   Icon: React.ForwardRefExoticComponent<Omit<LucideProps, "ref">>;
@@ -69,12 +68,6 @@ const HowToUse: React.FC = () => {
         "Navegue por lindas imagens do nosso parque pelas estações e momentos especiais.",
     },
     {
-      Icon: ShoppingBag,
-      title: "Suporte vendedores locais",
-      description:
-        "Encontre informações sobre os vendedores confiáveis e artesãos locais.",
-    },
-    {
       Icon: MapPin,
       title: "Planeje a sua visita",
       description:
@@ -88,7 +81,7 @@ const HowToUse: React.FC = () => {
         title="Como usar esse website?"
         description="Nosso website tem o propósito de simplicidade e acessibilidade para todas as idades. Aqui está o que você pode descobrir e como navegar por essa experiência digital."
       />
-      <div className="mt-12 mb-12 grid grid-cols-1 grid-rows-2 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-12 mb-12 grid grid-cols-1 grid-rows-2 gap-12 sm:grid-cols-2 lg:grid-cols-3">
         {cards.map((card, idx) => (
           <InfoCard
             idx={idx}
