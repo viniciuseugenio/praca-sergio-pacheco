@@ -6,7 +6,7 @@ import { motion } from "motion/react";
 
 const Feedback: React.FC = () => {
   return (
-    <SectionContainer className="mt-16">
+    <SectionContainer id="feedback" className="pt-24">
       <SectionTitle
         title="Compartilhe seus pensamentos"
         description="O seu feedback nos ajuda a aprimorar tanto nosso website quanto a praça. Seja sugestões, críticas ou compartilhar sua experiência, adoraríamos saber sua opinião!"
