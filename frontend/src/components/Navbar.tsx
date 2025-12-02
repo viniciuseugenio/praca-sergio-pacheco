@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import HeroNavbar from "./UI/HeroNavbar";
-import FloatingNavbar from "./UI/FloatingNavbar";
 import { useMatch } from "react-router";
+import FloatingNavbar from "./UI/FloatingNavbar";
+import HeroNavbar from "./UI/HeroNavbar";
 
 export type LinksArray = {
   to: string;
@@ -34,8 +34,9 @@ const Navbar: React.FC = () => {
   const links = [
     { to: "/", label: "Início" },
     { to: "/#gallery", label: "Galeria" },
+    { to: "/#natureza", label: "Natureza" },
     { to: "/#eventos", label: "Eventos" },
-    { to: "/#direcoes", label: "Direções" },
+    { to: "/#direcoes", label: "Como Chegar" },
     { to: "/#feedback", label: "Feedback" },
     { to: "/history", label: "História" },
   ];
