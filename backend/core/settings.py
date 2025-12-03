@@ -127,19 +127,10 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # Media files (user uploads)
-# Check if all required Spaces variables are present
-SPACES_KEY = config("SPACES_KEY", default="")
-SPACES_SECRET = config("SPACES_SECRET", default="")
-SPACES_BUCKET_NAME = config("SPACES_BUCKET_NAME", default="")
-SPACES_ENDPOINT_URL = config("SPACES_ENDPOINT_URL", default="")
-
-# Only use Spaces if ALL required variables are set
-USE_SPACES = all([SPACES_KEY, SPACES_SECRET, SPACES_BUCKET_NAME, SPACES_ENDPOINT_URL])
-
-AWS_ACCESS_KEY_ID = SPACES_KEY
-AWS_SECRET_ACCESS_KEY = SPACES_SECRET
-AWS_STORAGE_BUCKET_NAME = SPACES_BUCKET_NAME
-AWS_S3_ENDPOINT_URL = SPACES_ENDPOINT_URL
+AWS_S3_ACCESS_KEY_ID = config("SPACES_KEY")
+AWS_SECRET_ACCESS_KEY = config("SPACES_SECRET")
+AWS_STORAGE_BUCKET_NAME = config("SPACES_BUCKET_NAME")
+AWS_S3_ENDPOINT_URL = config("SPACES_ENDPOINT_URL")
 AWS_S3_REGION_NAME = config("SPACES_REGION", default="atl1")
 
 # Use CDN endpoint for serving files (faster delivery)
@@ -152,19 +143,16 @@ AWS_S3_CUSTOM_DOMAIN = config(
 AWS_S3_OBJECT_PARAMETERS = {
     "CacheControl": "max-age=86400",  # Cache for 24 hours
 }
-AWS_LOCATION = "media"
+AWS_LOCATION = "media"  # Prefix for all uploaded files
 AWS_DEFAULT_ACL = "public-read"
 AWS_S3_FILE_OVERWRITE = False  # Don't overwrite files with same name
 AWS_QUERYSTRING_AUTH = False  # Don't add auth query params to URLs
 
 # Use Spaces for media storage
-DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
 MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/"
-
-# Modern Django 4.2+ STORAGES configuration
 STORAGES = {
     "default": {
-        "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
+        "BACKEND": "storages.backends.s3.S3Storage",
     },
     "staticfiles": {
         "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
